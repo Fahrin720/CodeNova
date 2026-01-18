@@ -1,11 +1,14 @@
-from flask import Flask, request, jsonify, session
+from flask import Flask, request, jsonify, session, send_from_directory
 import mysql.connector
 import bcrypt
+import os
 
 # =========================
 # APP SETUP
 # =========================
-app = Flask(__name__)
+# Get the path to the frontend folder
+frontend_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'frontend'))
+app = Flask(__name__, static_folder=frontend_path, static_url_path='')
 app.secret_key = "super_secret_key_change_later"
 
 # =========================
@@ -120,7 +123,7 @@ def me():
 # =========================
 @app.route('/')
 def home():
-    return "College Marketplace Backend Running 🚀"
+    return send_from_directory(frontend_path, 'index.html')
 
 # =========================
 # RUN
