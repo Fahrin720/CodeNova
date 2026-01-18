@@ -1,5 +1,5 @@
 /* ==========================================================================
-   1. CORE VARIABLES & RESET
+   1. CORE VARIABLES & GLOBAL RESET
    ========================================================================== */
 :root {
     --primary: #4f46e5;
@@ -32,8 +32,15 @@ body {
     overflow-x: hidden;
 }
 
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    width: 100%;
+}
+
 /* ==========================================================================
-   2. NAVIGATION (Glassmorphism)
+   2. NAVIGATION (Glassmorphism & Branding)
    ========================================================================== */
 .glass-nav {
     position: sticky;
@@ -48,23 +55,18 @@ body {
     align-items: center;
 }
 
-.container {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 24px;
-    width: 100%;
-}
+.nav-wrapper { display: flex; justify-content: space-between; align-items: center; width: 100%; }
 
-.nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
-
-/* Branding */
 .brand { display: flex; align-items: center; gap: 12px; cursor: pointer; }
 .bento-logo { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; }
 .sq { width: 8px; height: 8px; background: var(--primary); border-radius: 2px; }
-.brand-text h1 { font-size: 1.4rem; font-weight: 800; line-height: 1; }
-.brand-text .tagline { font-size: 0.65rem; text-transform: uppercase; color: var(--primary); font-weight: 700; letter-spacing: 1px; }
 
-/* Nav Links */
+.brand-text h1 { font-size: 1.4rem; font-weight: 800; line-height: 1; }
+.brand-text .tagline { 
+    font-size: 0.65rem; text-transform: uppercase; color: var(--primary); 
+    font-weight: 700; letter-spacing: 1px; 
+}
+
 .nav-links { display: flex; gap: 30px; }
 .nav-item {
     text-decoration: none;
@@ -72,10 +74,12 @@ body {
     font-weight: 600;
     position: relative;
     padding: 8px 0;
+    transition: color 0.2s;
 }
 .nav-item.active, .nav-item:hover { color: var(--primary); }
 .nav-item.active::after {
-    content: ''; position: absolute; bottom: -2px; left: 0; width: 100%; height: 3px; background: var(--primary); border-radius: 10px;
+    content: ''; position: absolute; bottom: -2px; left: 0; width: 100%; 
+    height: 3px; background: var(--primary); border-radius: 10px;
 }
 
 .nav-actions { display: flex; align-items: center; gap: 20px; }
@@ -86,10 +90,14 @@ body {
 .search-input input { border: none; background: transparent; outline: none; margin-left: 8px; width: 200px; }
 
 .avatar-sm { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--white); box-shadow: var(--shadow-sm); transition: 0.2s; }
-.profile-trigger:hover .avatar-sm { transform: scale(1.1); border-color: var(--primary); }
+.profile-trigger { position: relative; cursor: pointer; }
+.status-indicator {
+    position: absolute; bottom: 2px; right: 2px; width: 10px; height: 10px;
+    background: var(--secondary); border: 2px solid var(--white); border-radius: 50%;
+}
 
 /* ==========================================================================
-   3. BREADCRUMB BOX (Precision Trigger)
+   3. PRECISION BREADCRUMB BOX
    ========================================================================== */
 .breadcrumb-bar {
     position: absolute;
@@ -101,21 +109,15 @@ body {
     border: 1px solid var(--slate-200);
     border-radius: 12px;
     box-shadow: var(--shadow-md);
-    
-    /* Hidden State */
     max-height: 0;
     opacity: 0;
     overflow: hidden;
     visibility: hidden;
-    pointer-events: none; /* Prevents interaction when hidden */
+    pointer-events: none;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     padding: 0 16px;
 }
 
-/* 
-   FIX: Precision Hover 
-   Only show when the link with ID #homeTrigger is hovered.
-*/
 .glass-nav:has(#homeTrigger:hover) + .breadcrumb-bar,
 .breadcrumb-bar:hover,
 .breadcrumb-bar.is-active {
@@ -128,280 +130,100 @@ body {
 }
 
 .breadcrumbs { display: flex; align-items: center; gap: 12px; font-size: 0.85rem; white-space: nowrap; }
-.breadcrumbs a { text-decoration: none; color: var(--slate-600); font-weight: 500; transition: 0.2s; }
+.breadcrumbs a { text-decoration: none; color: var(--slate-600); font-weight: 500; transition: color 0.2s; }
 .breadcrumbs a:hover { color: var(--primary); }
 .breadcrumbs .sep { color: var(--slate-200); display: flex; align-items: center; }
 .breadcrumbs .current { font-weight: 700; color: var(--navy); }
 
 /* ==========================================================================
-   4. HERO & HUB CONTENT
+   4. HERO HUB & BULLETINS
    ========================================================================== */
 .hero-hub { background: radial-gradient(circle at top right, #eef2ff, var(--bg)); padding: 100px 0; }
 .hero-grid { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+.hero-text { max-width: 600px; }
 .hero-title { font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin: 20px 0; }
 .hero-title span { color: var(--primary); }
-.badge { background: var(--white); padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; border: 1px solid var(--slate-200); }
+
+/* FIXED: SIDE-BY-SIDE HERO BUTTONS */
+.hero-btns { 
+    display: flex; 
+    flex-direction: row; 
+    gap: 15px; 
+    margin-top: 30px; 
+    justify-content: flex-start;
+}
+.hero-btns .btn { width: auto; min-width: 160px; }
+
+.stat-card { background: var(--white); padding: 20px; border-radius: 16px; border: 1px solid var(--slate-200); text-align: center; min-width: 140px; }
 
 .main-layout { display: flex; gap: 40px; padding: 40px 0 80px; }
 .sidebar { width: 280px; flex-shrink: 0; }
 .content-area { flex: 1; }
 
-/* News / Cards / Grid */
 .news-item { background: var(--white); padding: 15px; border-radius: var(--radius-md); border: 1px solid var(--slate-200); margin-bottom: 12px; }
+.news-tag { font-size: 0.6rem; padding: 2px 8px; border-radius: 4px; font-weight: 800; text-transform: uppercase; }
+
+/* ==========================================================================
+   5. MARKETPLACE CATALOG & PRODUCT CARDS
+   ========================================================================== */
 .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 280px; gap: 20px; }
-.bento-card { background: var(--white); border-radius: 20px; border: 1px solid var(--slate-200); transition: 0.3s; }
-.bento-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+.bento-card { background: var(--white); border-radius: 20px; border: 1px solid var(--slate-200); transition: 0.3s; overflow: hidden; position: relative; }
+.bento-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: var(--shadow-md); }
 .featured { grid-column: span 2; grid-row: span 2; }
 
+.product-image { width: 100%; height: 180px; background: var(--slate-100); position: relative; }
+.product-info-box { padding: 20px; display: flex; flex-direction: column; gap: 8px; }
+.product-tag { 
+    position: absolute; top: 12px; left: 12px; padding: 4px 10px; border-radius: 6px; 
+    font-size: 0.65rem; font-weight: 800; text-transform: uppercase; box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+}
+
 /* ==========================================================================
-   5. PROFILE DASHBOARD
+   6. SERVICES SLIDER (FIXED FOR MOUSE DRAGGING)
+   ========================================================================== */
+.services-scroll-container {
+    display: flex; gap: 20px; overflow-x: auto; padding: 10px 5px 20px 5px; 
+    scroll-behavior: smooth; -ms-overflow-style: none; scrollbar-width: none; 
+    
+    /* Cursor Feedback */
+    cursor: grab;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+.services-scroll-container:active { cursor: grabbing; }
+.services-scroll-container::-webkit-scrollbar { display: none; }
+
+.service-mini-card {
+    flex: 0 0 280px; background: var(--white); border: 1px solid var(--slate-200); 
+    border-radius: 20px; padding: 24px; display: flex; flex-direction: column; justify-content: space-between;
+}
+
+/* Custom Slider Track */
+.custom-scroll-track {
+    width: 200px; height: 4px; background: var(--slate-200); 
+    margin: 10px auto 30px auto; border-radius: 10px; position: relative; overflow: hidden;
+}
+.custom-scroll-thumb {
+    position: absolute; top: 0; left: 0; height: 100%; width: 60px; 
+    background: var(--primary); border-radius: 10px; transition: transform 0.1s ease-out;
+}
+
+/* Status Badges */
+.status-badge { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; }
+.online { background: #ecfdf5; color: var(--secondary); border: 1px solid #10b98133; }
+.offline { background: var(--slate-100); color: var(--slate-400); }
+
+/* ==========================================================================
+   7. PROFILE & REPUTATION SYSTEM
    ========================================================================== */
 .profile-card-main { background: var(--white); padding: 30px; border-radius: var(--radius-lg); border: 1px solid var(--slate-200); text-align: center; }
-.avatar-large-wrapper { position: relative; width: 120px; height: 120px; margin: 0 auto 20px; }
-.avatar-lg { width: 100%; height: 100%; border-radius: 50%; border: 4px solid var(--primary-light); }
-.online-status { position: absolute; bottom: 8px; right: 8px; width: 18px; height: 18px; background: var(--secondary); border: 3px solid var(--white); border-radius: 50%; }
+.avatar-lg { width: 120px; height: 120px; border-radius: 50%; border: 4px solid var(--primary-light); margin-bottom: 15px; }
+.trust-score { display: flex; align-items: center; justify-content: center; gap: 6px; color: var(--secondary); font-weight: 700; margin-bottom: 10px; }
 
-.trust-score { display: flex; align-items: center; justify-content: center; gap: 6px; margin: 10px 0; color: var(--secondary); font-weight: 700; }
-.badge-shelf { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
-.t-badge { width: 40px; height: 40px; background: var(--slate-100); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--primary); }
-
-.profile-tabs { display: flex; gap: 20px; border-bottom: 1px solid var(--slate-200); margin-bottom: 30px; }
-.tab-btn { padding: 12px 20px; background: none; border: none; font-weight: 700; color: var(--slate-600); cursor: pointer; position: relative; }
-.tab-btn.active { color: var(--primary); }
-.tab-btn.active::after { content: ''; position: absolute; bottom: -1px; left: 0; width: 100%; height: 3px; background: var(--primary); }
-
-.vouch-card { background: var(--white); padding: 20px; border-radius: 12px; border-left: 4px solid var(--primary); margin-bottom: 15px; border-top: 1px solid var(--slate-100); border-right: 1px solid var(--slate-100); border-bottom: 1px solid var(--slate-100); }
+.vouch-card { 
+    background: var(--white); padding: 20px; border-radius: 12px; border-left: 4px solid var(--primary); 
+    margin-bottom: 15px; border: 1px solid var(--slate-100);
+}
 .vouch-tag { font-size: 0.65rem; background: var(--primary-light); padding: 2px 8px; border-radius: 4px; color: var(--primary); font-weight: 800; }
 
-/* ==========================================================================
-   6. FOOTER & UTILS
-   ========================================================================== */
-.monolith-footer { background: var(--navy); color: var(--white); padding: 60px 0 30px; }
-.footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
-.footer-col a { color: var(--white); text-decoration: none; opacity: 0.7; display: block; margin-bottom: 10px; transition: 0.2s; }
-.footer-col a:hover { opacity: 1; color: var(--primary); }
-
-.btn { padding: 12px 24px; border-radius: 10px; font-weight: 700; cursor: pointer; border: none; transition: 0.3s; display: inline-block; }
-.btn-primary { background: var(--primary); color: white; }
-.btn-dark { background: var(--navy); color: white; }
-.w-100 { width: 100%; }
-
-.skeleton { background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%); background-size: 200% 100%; animation: loading 1.5s infinite; }
-@keyframes loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
-
-/* --- MARKETPLACE SPECIFIC STYLES --- */
-.content-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--slate-200);
-}
-
-.results-info h3 { font-size: 1.5rem; font-weight: 800; }
-.results-info p { color: var(--slate-600); font-size: 0.9rem; }
-
-.sort-select {
-    padding: 10px 15px;
-    border-radius: 8px;
-    border: 1px solid var(--slate-200);
-    font-family: inherit;
-    font-weight: 600;
-    color: var(--navy);
-    outline: none;
-    cursor: pointer;
-}
-
-/* Product Card Refinements */
-.product-image {
-    width: 100%;
-    height: 180px;
-    background: var(--slate-100);
-    position: relative;
-    border-radius: 12px 12px 0 0;
-}
-
-.product-info-box {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.price-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.p-price { font-size: 1.25rem; font-weight: 800; color: var(--primary); }
-.p-condition { font-size: 0.7rem; font-weight: 700; color: var(--slate-400); text-transform: uppercase; }
-.p-seller { font-size: 0.8rem; color: var(--slate-600); display: flex; align-items: center; gap: 5px; }
-
-/* Status Tags */
-.product-tag {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    padding: 4px 10px;
-    border-radius: 6px;
-    font-size: 0.65rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-.urgent { background: #ef4444; color: white; }
-.nego { background: var(--secondary); color: white; }
-
-.btn-sm { padding: 8px 16px; font-size: 0.85rem; }
-/* --- WORKFLOW BOX STYLES --- */
-.workflow-card {
-    background: var(--white);
-    max-width: 650px;
-    margin: 0 auto;
-    padding: 40px;
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--slate-200);
-    box-shadow: var(--shadow-md);
-}
-
-.flow-state.hidden { display: none; }
-
-.state-header { text-align: center; margin-bottom: 30px; }
-
-.icon-circle {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 15px;
-}
-.icon-circle.primary { background: var(--primary-light); color: var(--primary); }
-.icon-circle.warning { background: #fffbeb; color: #d97706; }
-.icon-circle.success { background: #ecfdf5; color: var(--secondary); }
-
-/* Form Styles */
-.form-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    margin-bottom: 20px;
-}
-
-.input-group { margin-bottom: 15px; text-align: left; }
-.input-group label { display: block; font-size: 0.8rem; font-weight: 700; color: var(--slate-600); margin-bottom: 6px; }
-.input-group input, .input-group select, .input-group textarea {
-    width: 100%; padding: 12px; border: 1px solid var(--slate-200); border-radius: 8px; font-family: inherit; font-size: 0.9rem;
-}
-
-.upload-area {
-    border: 2px dashed var(--slate-200);
-    border-radius: var(--radius-md);
-    padding: 30px;
-    text-align: center;
-    margin-bottom: 25px;
-    color: var(--slate-400);
-}
-.upload-area i { margin-bottom: 10px; }
-
-/* Pending State Info */
-.pending-info {
-    background: var(--bg);
-    padding: 20px;
-    border-radius: 12px;
-    margin-bottom: 20px;
-}
-.p-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-weight: 600; }
-.small-note { font-size: 0.8rem; color: var(--slate-600); margin-bottom: 20px; text-align: center; }
-
-/* Posting Tabs */
-.post-tabs { display: flex; gap: 10px; margin-bottom: 25px; background: var(--bg); padding: 5px; border-radius: 10px; }
-.post-tabs .tab-btn { flex: 1; padding: 10px; border-radius: 6px; border: none; font-weight: 700; cursor: pointer; color: var(--slate-600); }
-.post-tabs .tab-btn.active { background: var(--white); color: var(--primary); box-shadow: var(--shadow-sm); }
-/* --- SERVICES HUB SPECIFIC --- */
-.status-filters {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    display: inline-block;
-    margin-right: 5px;
-}
-.dot.active { background: var(--secondary); box-shadow: 0 0 8px var(--secondary); }
-.dot.incoming { background: #3b82f6; }
-.dot.offline { background: var(--slate-400); }
-.dot.demanded { background: #f59e0b; }
-
-.services-vertical-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-.s-card {
-    background: var(--white);
-    padding: 24px;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--slate-200);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: 0.3s ease;
-}
-
-.s-main { display: flex; align-items: center; gap: 20px; }
-
-.s-icon {
-    width: 56px;
-    height: 56px;
-    background: var(--slate-100);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--primary);
-}
-.s-icon.request { background: #fffbeb; color: #f59e0b; }
-
-.s-info h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 2px; }
-.s-info p { color: var(--slate-600); font-size: 0.9rem; }
-
-.s-badge {
-    font-size: 0.65rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 6px;
-    display: inline-block;
-}
-.s-badge.active { color: var(--secondary); }
-.s-badge.incoming { color: #3b82f6; }
-.s-badge.offline { color: var(--slate-400); }
-.s-badge.demanded { color: #f59e0b; }
-
-/* Demanded Card Special Styling */
-.status-demanded {
-    border: 2px dashed #fcd34d;
-    background: #fffcf0;
-}
-
-.posted-by { font-size: 0.75rem; color: var(--slate-600); margin-bottom: 8px; text-align: right; }
-
-.btn-disabled { background: var(--slate-200); color: var(--slate-400); cursor: not-allowed; }
-
-.sidebar-promo {
-    margin-top: 30px;
-    padding: 20px;
-    background: var(--primary-light);
-    border-radius: 12px;
-    font-size: 0.85rem;
-}
-.sidebar-promo h4 { color: var(--primary); margin-bottom: 5px; }
+.profile-tabs { display: flex; gap: 20px; border-bottom: 1px so

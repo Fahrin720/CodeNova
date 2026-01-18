@@ -4,19 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E & F Hub | Boys' Dormitory Portal</title>
-    <!-- CSS Link -->
     <link rel="stylesheet" href="css/style.css">
-    <!-- Typography: Plus Jakarta Sans -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <!-- Icons: Lucide -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
-    <!-- 1. GLOBAL NAVIGATION (HCI: Consistency) -->
+    <!-- 1. GLOBAL NAVIGATION -->
     <header class="glass-nav sticky">
         <div class="container nav-wrapper">
-            <!-- Branding -->
             <div class="brand" onclick="window.location.href='index.html'">
                 <div class="bento-logo">
                     <span class="sq"></span><span class="sq"></span>
@@ -28,23 +24,19 @@
                 </div>
             </div>
             
-            <!-- Main Nav Links -->
             <nav class="nav-links">
-                <!-- Trigger for On-Demand Breadcrumbs -->
                 <a href="index.html" class="nav-item active" id="homeTrigger">Home</a>
                 <a href="marketplace.html" class="nav-item">Marketplace</a>
                 <a href="services.html" class="nav-item">Services</a>
                 <a href="add-product.html" class="nav-item">Post Listing</a>
             </nav>
 
-            <!-- Actions area -->
             <div class="nav-actions">
                 <div class="search-input">
                     <i data-lucide="search"></i>
                     <input type="text" placeholder="Search news or items...">
                 </div>
                 
-                <!-- Profile Link -->
                 <div class="profile-trigger" onclick="window.location.href='profile.html'">
                     <img src="https://ui-avatars.com/api/?name=User+Name&background=4f46e5&color=fff" alt="Profile" class="avatar-sm">
                     <div class="status-indicator"></div>
@@ -53,18 +45,18 @@
         </div>
     </header>
 
-    <!-- 2. ON-DEMAND BREADCRUMB BAR (Hidden by default via CSS) -->
+    <!-- 2. ON-DEMAND BREADCRUMB BOX -->
     <section class="breadcrumb-bar" id="breadcrumbBar">
-    <nav class="breadcrumbs">
-        <a href="index.html"><i data-lucide="home"></i> Home</a>
-        <span class="sep"><i data-lucide="chevron-right"></i></span>
-        <a href="marketplace.html">Marketplace</a>
-        <span class="sep"><i data-lucide="chevron-right"></i></span>
-        <span class="current">Textbooks</span>
-    </nav>
+        <nav class="breadcrumbs">
+            <a href="index.html"><i data-lucide="home"></i> Home</a>
+            <span class="sep"><i data-lucide="chevron-right"></i></span>
+            <a href="marketplace.html">Marketplace</a>
+            <span class="sep"><i data-lucide="chevron-right"></i></span>
+            <span class="current">Textbooks</span>
+        </nav>
     </section>
 
-    <!-- 3. HERO HUB (Mental Models: Instant Clarity) -->
+    <!-- 3. HERO HUB -->
     <section class="hero-hub">
         <div class="container hero-grid">
             <div class="hero-text">
@@ -89,7 +81,7 @@
         </div>
     </section>
 
-    <!-- 4. MAIN LAYOUT (Fitt's Law & Scannability) -->
+    <!-- 4. MAIN LAYOUT -->
     <main class="container main-layout" id="news">
         
         <!-- SIDEBAR: News & Alerts -->
@@ -117,48 +109,101 @@
             </div>
         </aside>
 
-        <!-- CONTENT AREA: Services & Market Preview -->
+        <!-- CONTENT AREA -->
         <section class="content-area">
             
-            <!-- A. QUICK SERVICES (Printing, repair, etc.) -->
             <div class="section-header">
-                <h3>Printing & Services</h3>
-                <a href="services.html" class="view-all">View All</a>
+                <div class="header-main">
+                    <h3>Live Services</h3>
+                    <p>Active talent in Blok E & F</p>
+                </div>
+                <a href="services.html" class="view-all">View All <i data-lucide="arrow-right"></i></a>
             </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <i data-lucide="printer"></i>
-                    <div class="service-info">
+
+            <!-- 1. The Container -->
+            <div class="services-scroll-container" id="servicesScroll">
+                
+                <div class="service-mini-card">
+                    <div class="card-top">
+                        <div class="s-icon"><i data-lucide="printer"></i></div>
+                        <span class="status-badge online">Active</span>
+                    </div>
+                    <div class="card-body">
                         <h4>Ariff's Printing</h4>
                         <p>RM 0.10/page • Room E302</p>
                     </div>
-                    <button class="contact-btn"><i data-lucide="message-circle"></i></button>
+                    <div class="card-footer">
+                        <button class="contact-btn-whatsapp"><i data-lucide="message-circle"></i> Message</button>
+                    </div>
                 </div>
-                <div class="service-card">
-                    <i data-lucide="wrench"></i>
-                    <div class="service-info">
+
+                <div class="service-mini-card">
+                    <div class="card-top">
+                        <div class="s-icon"><i data-lucide="wrench"></i></div>
+                        <span class="status-badge offline">Offline</span>
+                    </div>
+                    <div class="card-body">
                         <h4>PC Repair / OS</h4>
                         <p>Free Diagnosis • Room F210</p>
                     </div>
-                    <button class="contact-btn"><i data-lucide="message-circle"></i></button>
+                    <div class="card-footer">
+                        <button class="btn-disabled" disabled>Unavailable</button>
+                    </div>
                 </div>
+
+                <div class="service-mini-card">
+                    <div class="card-top">
+                        <div class="s-icon"><i data-lucide="scissors"></i></div>
+                        <span class="status-badge online">Active</span>
+                    </div>
+                    <div class="card-body">
+                        <h4>Dorm Barber</h4>
+                        <p>Haircut RM 10 • Room E105</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="contact-btn-whatsapp"><i data-lucide="message-circle"></i> Message</button>
+                    </div>
+                </div>
+
+                <div class="service-mini-card">
+                    <div class="card-top">
+                        <div class="s-icon"><i data-lucide="truck"></i></div>
+                        <span class="status-badge online">Active</span>
+                    </div>
+                    <div class="card-body">
+                        <h4>Food Delivery</h4>
+                        <p>McD/KFC Runner • Room F302</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="contact-btn-whatsapp"><i data-lucide="message-circle"></i> Message</button>
+                    </div>
+                </div>
+
             </div>
 
-            <!-- B. MARKETPLACE INCOMINGS (Recognition over Recall) -->
-            <div class="section-header" style="margin-top: 40px;">
-                <h3>New in Marketplace</h3>
-                <a href="marketplace.html" class="view-all">Shop All</a>
+            <!-- 2. THE NEW SLIDER TRACK -->
+            <div class="custom-scroll-track">
+                <div class="custom-scroll-thumb" id="scrollThumb"></div>
             </div>
+
+            <div class="section-header" style="margin-top: 40px;">
+                <div class="header-main">
+                    <h3>New in Marketplace</h3>
+                    <p>Fresh listings from the boys</p>
+                </div>
+                <a href="marketplace.html" class="view-all">Shop All <i data-lucide="arrow-right"></i></a>
+            </div>
+
             <div class="bento-grid">
-                <!-- Skeletons show during loading -->
                 <div class="bento-card featured skeleton"></div>
                 <div class="bento-card skeleton"></div>
                 <div class="bento-card skeleton"></div>
             </div>
+
         </section>
     </main>
 
-    <!-- 5. FOOTER (Trust & Hierarchy) -->
+    <!-- 5. FOOTER -->
     <footer class="monolith-footer">
         <div class="container footer-grid">
             <div class="footer-col">
@@ -186,31 +231,74 @@
         </div>
     </footer>
 
-    <!-- JAVASCRIPT: Logic for Icons and On-Demand Breadcrumbs -->
+    <!-- JAVASCRIPT -->
     <script>
-        // Initialize Lucide Icons
         lucide.createIcons();
 
+        // --- 1. THE SLIDER LOGIC YOU PROVIDED ---
+        const slider = document.getElementById('servicesScroll');
+        const thumb = document.getElementById('scrollThumb');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        // Mouse Drag Logic
+        slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            slider.classList.add('active');
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        });
+
+        slider.addEventListener('mouseleave', () => {
+            isDown = false;
+        });
+
+        slider.addEventListener('mouseup', () => {
+            isDown = false;
+        });
+
+        slider.addEventListener('mousemove', (e) => {
+            if (!isDown) return; 
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 2; 
+            slider.scrollLeft = scrollLeft - walk;
+        });
+
+        // Update Custom Track Thumb
+        slider.addEventListener('scroll', () => {
+            const maxScroll = slider.scrollWidth - slider.clientWidth;
+            const scrollPercent = (slider.scrollLeft / maxScroll) * 100;
+            
+            const trackWidth = 200;
+            const thumbWidth = 60;
+            const maxThumbMove = trackWidth - thumbWidth;
+            
+            const moveX = (scrollPercent / 100) * maxThumbMove;
+            thumb.style.transform = `translateX(${moveX}px)`;
+        });
+
+        // --- 2. BREADCRUMB LOGIC ---
         const homeTrigger = document.getElementById('homeTrigger');
         const breadcrumbBar = document.getElementById('breadcrumbBar');
+        let hideTimeout;
 
-        // HCI: On-Demand Reveal via Click (for mobile/tablet usability)
-        homeTrigger.addEventListener('click', (e) => {
-            // Check if user is clicking specifically to see breadcrumbs
-            // If you want it to navigate immediately, remove e.preventDefault()
-            e.preventDefault(); 
-            breadcrumbBar.classList.toggle('is-active');
+        homeTrigger.addEventListener('mouseenter', () => {
+            clearTimeout(hideTimeout);
+            breadcrumbBar.classList.add('is-active');
         });
 
-        // Close breadcrumbs if user clicks anywhere else on the screen
-        document.addEventListener('click', (e) => {
-            if (!homeTrigger.contains(e.target) && !breadcrumbBar.contains(e.target)) {
-                breadcrumbBar.classList.remove('is-active');
-            }
+        homeTrigger.addEventListener('mouseleave', () => {
+            hideTimeout = setTimeout(() => {
+                if (!breadcrumbBar.matches(':hover')) {
+                    breadcrumbBar.classList.remove('is-active');
+                }
+            }, 200);
         });
 
-        // Optional: Re-render icons if new content is loaded dynamically
-        window.addEventListener('load', () => lucide.createIcons());
+        breadcrumbBar.addEventListener('mouseenter', () => clearTimeout(hideTimeout));
+        breadcrumbBar.addEventListener('mouseleave', () => breadcrumbBar.classList.remove('is-active'));
     </script>
 </body>
 </html>
