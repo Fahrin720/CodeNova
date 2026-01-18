@@ -6,16 +6,17 @@ import bcrypt
 # APP SETUP
 # =========================
 app = Flask(__name__)
-app.secret_key = "super_secret_key_change_later"
+app.secret_key = "test_secret_key"
 
 # =========================
 # DATABASE CONNECTION
+# (phpMyAdmin uses MySQL)
 # =========================
 def get_db():
     return mysql.connector.connect(
         host="localhost",
-        user="root",
-        password="",
+        user="root",          # phpMyAdmin username
+        password="",          # phpMyAdmin password (empty if XAMPP default)
         database="college_marketplace"
     )
 
@@ -50,7 +51,10 @@ def register():
         cursor.close()
         db.close()
 
-    return jsonify({"message": "User registered successfully"}), 201
+    return jsonify({
+        "success": True,
+        "message": "User registered successfully"
+    }), 201
 
 # =========================
 # LOGIN
@@ -58,7 +62,6 @@ def register():
 @app.route('/api/auth/login', methods=['POST'])
 def login():
     data = request.json
-
     email = data.get('email')
     password = data.get('password')
 
@@ -76,16 +79,35 @@ def login():
         return jsonify({"error": "Invalid credentials"}), 401
 
     session['user_id'] = user['user_id']
-    session['role'] = user['role']
 
     return jsonify({
+        "success": True,
         "message": "Login successful",
         "user": {
             "id": user['user_id'],
-            "name": user['full_name'],
-            "role": user['role']
+            "name": user['full_name']
         }
     })
+
+# =========================
+# CHECK SESSION
+# =========================
+@app.route('/api/auth/me', methods=['GET'])
+def me():
+    if 'user_id' not in session:
+        return jsonify({"error": "Not logged in"}), 401
+
+    db = get_db()
+    cursor = db.cursor(dictionary=True)
+    cursor.execute(
+        "SELECT user_id, full_name, email FROM users WHERE user_id = %s",
+        (session['user_id'],)
+    )
+    user = cursor.fetchone()
+    cursor.close()
+    db.close()
+
+    return jsonify(user)
 
 # =========================
 # LOGOUT
@@ -96,34 +118,14 @@ def logout():
     return jsonify({"message": "Logged out"})
 
 # =========================
-# CURRENT USER
-# =========================
-@app.route('/api/auth/me', methods=['GET'])
-def me():
-    if 'user_id' not in session:
-        return jsonify({"error": "Unauthorized"}), 401
-
-    db = get_db()
-    cursor = db.cursor(dictionary=True)
-    cursor.execute(
-        "SELECT user_id, full_name, email, role FROM users WHERE user_id = %s",
-        (session['user_id'],)
-    )
-    user = cursor.fetchone()
-    cursor.close()
-    db.close()
-
-    return jsonify(user)
-
-# =========================
 # ROOT
 # =========================
 @app.route('/')
 def home():
-    return "College Marketplace Backend Running 🚀"
+    return "Flask + phpMyAdmin backend running ✅"
 
 # =========================
-# RUN
+# RUN SERVER
 # =========================
 if __name__ == '__main__':
     app.run(debug=True)
