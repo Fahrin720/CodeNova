@@ -3,87 +3,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>College Marketplace</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <title>E & F Hub | Boys' Dormitory Portal</title>
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Typography: Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Icons: Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="navbar-container">
-            <div class="navbar-brand">
-                <h1>🏪 College Marketplace</h1>
+
+    <!-- 1. GLOBAL NAVIGATION (HCI: Consistency) -->
+    <header class="glass-nav sticky">
+        <div class="container nav-wrapper">
+            <!-- Branding -->
+            <div class="brand" onclick="window.location.href='index.html'">
+                <div class="bento-logo">
+                    <span class="sq"></span><span class="sq"></span>
+                    <span class="sq"></span><span class="sq"></span>
+                </div>
+                <div class="brand-text">
+                    <h1>E & F Hub</h1>
+                    <span class="tagline">Boys' Dormitory Portal</span>
+                </div>
             </div>
-            <div class="nav-links">
-                <span id="userInfo" class="user-welcome"></span>
-                <a href="/login" id="loginLink" class="btn-outline">Login</a>
-                <a href="/register" id="registerLink" class="btn-outline">Register</a>
-                <a href="/logout" id="logoutLink" class="btn-outline" style="display:none;">Logout</a>
+            
+            <!-- Main Nav Links -->
+            <nav class="nav-links">
+                <!-- Trigger for On-Demand Breadcrumbs -->
+                <a href="index.html" class="nav-item active" id="homeTrigger">Home</a>
+                <a href="marketplace.html" class="nav-item">Marketplace</a>
+                <a href="services.html" class="nav-item">Services</a>
+                <a href="add-product.html" class="nav-item">Post Listing</a>
+            </nav>
+
+            <!-- Actions area -->
+            <div class="nav-actions">
+                <div class="search-input">
+                    <i data-lucide="search"></i>
+                    <input type="text" placeholder="Search news or items...">
+                </div>
+                
+                <!-- Profile Link -->
+                <div class="profile-trigger" onclick="window.location.href='profile.html'">
+                    <img src="https://ui-avatars.com/api/?name=User+Name&background=4f46e5&color=fff" alt="Profile" class="avatar-sm">
+                    <div class="status-indicator"></div>
+                </div>
             </div>
         </div>
+    </header>
+
+    <!-- 2. ON-DEMAND BREADCRUMB BAR (Hidden by default via CSS) -->
+    <section class="breadcrumb-bar" id="breadcrumbBar">
+    <nav class="breadcrumbs">
+        <a href="index.html"><i data-lucide="home"></i> Home</a>
+        <span class="sep"><i data-lucide="chevron-right"></i></span>
+        <a href="marketplace.html">Marketplace</a>
+        <span class="sep"><i data-lucide="chevron-right"></i></span>
+        <span class="current">Textbooks</span>
     </nav>
+    </section>
 
-    <div class="hero-section">
-        <div class="hero-content">
-            <h2>Find What You Need</h2>
-            <p>Buy and sell items with fellow college students</p>
+    <!-- 3. HERO HUB (Mental Models: Instant Clarity) -->
+    <section class="hero-hub">
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <span class="badge">Blok E & Blok F Official</span>
+                <h2 class="hero-title">Everything you need, <br><span>Right in the Dorm.</span></h2>
+                <p class="hero-subtitle">Stay updated with dorm news, find printing services, or trade gear with your neighbors in Blok E and F.</p>
+                <div class="hero-btns">
+                    <button class="btn btn-dark" onclick="document.getElementById('news').scrollIntoView()">View News</button>
+                    <button class="btn btn-primary" onclick="window.location.href='marketplace.html'">Go to Market</button>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <h3>12+</h3>
+                    <p>Services Active</p>
+                </div>
+                <div class="stat-card">
+                    <h3>45</h3>
+                    <p>New Items</p>
+                </div>
+            </div>
         </div>
-    </div>
-    
-    <div class="container">
-        <div class="section-header">
-            <h2>Available Items</h2>
-            <a href="/post_item" id="postItemBtn" class="btn-primary" style="display:none;">Post New Item</a>
-        </div>
-        <div id="itemsContainer" class="items-grid"></div>
-    </div>
+    </section>
 
+    <!-- 4. MAIN LAYOUT (Fitt's Law & Scannability) -->
+    <main class="container main-layout" id="news">
+        
+        <!-- SIDEBAR: News & Alerts -->
+        <aside class="sidebar">
+            <div class="filter-group">
+                <h4>Dorm Bulletin</h4>
+                <div class="news-feed">
+                    <div class="news-item">
+                        <span class="news-tag blok-e">Blok E</span>
+                        <p>Water supply disruption tonight 10PM - 12AM.</p>
+                        <span class="news-time">2h ago</span>
+                    </div>
+                    <div class="news-item">
+                        <span class="news-tag blok-f">Blok F</span>
+                        <p>Futsal match registration is now open!</p>
+                        <span class="news-time">5h ago</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="safety-card">
+                <i data-lucide="shield-check"></i>
+                <p>Verify your room number before trading. Safety first.</p>
+                <a href="#">Read Safety Guidelines</a>
+            </div>
+        </aside>
+
+        <!-- CONTENT AREA: Services & Market Preview -->
+        <section class="content-area">
+            
+            <!-- A. QUICK SERVICES (Printing, repair, etc.) -->
+            <div class="section-header">
+                <h3>Printing & Services</h3>
+                <a href="services.html" class="view-all">View All</a>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i data-lucide="printer"></i>
+                    <div class="service-info">
+                        <h4>Ariff's Printing</h4>
+                        <p>RM 0.10/page • Room E302</p>
+                    </div>
+                    <button class="contact-btn"><i data-lucide="message-circle"></i></button>
+                </div>
+                <div class="service-card">
+                    <i data-lucide="wrench"></i>
+                    <div class="service-info">
+                        <h4>PC Repair / OS</h4>
+                        <p>Free Diagnosis • Room F210</p>
+                    </div>
+                    <button class="contact-btn"><i data-lucide="message-circle"></i></button>
+                </div>
+            </div>
+
+            <!-- B. MARKETPLACE INCOMINGS (Recognition over Recall) -->
+            <div class="section-header" style="margin-top: 40px;">
+                <h3>New in Marketplace</h3>
+                <a href="marketplace.html" class="view-all">Shop All</a>
+            </div>
+            <div class="bento-grid">
+                <!-- Skeletons show during loading -->
+                <div class="bento-card featured skeleton"></div>
+                <div class="bento-card skeleton"></div>
+                <div class="bento-card skeleton"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 5. FOOTER (Trust & Hierarchy) -->
+    <footer class="monolith-footer">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <div class="brand">
+                    <h2 style="color: white; margin-bottom: 10px;">E & F Hub</h2>
+                </div>
+                <p style="opacity: 0.7;">The exclusive portal for students of Blok E and Blok F. Trade, share, and connect.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Support & Legal</h4>
+                <a href="#">Contact Support</a>
+                <a href="#">Campus Safety</a>
+                <a href="#">Terms of Service</a>
+            </div>
+            <div class="footer-col">
+                <h4>Emergency Contacts</h4>
+                <p>Security Office: +6012-3456789</p>
+                <p>Dorm Manager: +6012-9876543</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 E & F Hub. Built for boys, by boys.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT: Logic for Icons and On-Demand Breadcrumbs -->
     <script>
-        // Check user session
-        fetch('/api/auth/me')
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error('Not logged in');
-                }
-            })
-            .then(user => {
-                document.getElementById('userInfo').innerHTML = `👤 Welcome, <strong>${user.full_name}</strong>!`;
-                document.getElementById('loginLink').style.display = 'none';
-                document.getElementById('registerLink').style.display = 'none';
-                document.getElementById('logoutLink').style.display = 'inline';
-                document.getElementById('postItemBtn').style.display = 'inline-block';
-            })
-            .catch(error => {
-                document.getElementById('userInfo').innerHTML = '';
-                document.getElementById('loginLink').style.display = 'inline';
-                document.getElementById('registerLink').style.display = 'inline';
-                document.getElementById('logoutLink').style.display = 'none';
-                document.getElementById('postItemBtn').style.display = 'none';
-            });
+        // Initialize Lucide Icons
+        lucide.createIcons();
 
-        // Load products
-        fetch('/api/products')
-            .then(response => response.json())
-            .then(products => {
-                const container = document.getElementById('itemsContainer');
-                if (products.length === 0) {
-                    container.innerHTML = '<div class="empty-state"><p>📭 No items posted yet. Be the first to post!</p></div>';
-                } else {
-                    container.innerHTML = products.map(item => `
-                        <div class="item-card">
-                            <div class="item-header">
-                                <h3>${item.title}</h3>
-                                <span class="price">$${item.price}</span>
-                            </div>
-                            <p class="item-description">${item.description}</p>
-                            <button class="btn-secondary" onclick="alert('View details for: ${item.title}')">View Details</button>
-                        </div>
-                    `).join('');
-                }
-            })
-            .catch(error => {
-                document.getElementById('itemsContainer').innerHTML = '<div class="empty-state"><p>📭 No items posted yet. Be the first to post!</p></div>';
-            });
+        const homeTrigger = document.getElementById('homeTrigger');
+        const breadcrumbBar = document.getElementById('breadcrumbBar');
+
+        // HCI: On-Demand Reveal via Click (for mobile/tablet usability)
+        homeTrigger.addEventListener('click', (e) => {
+            // Check if user is clicking specifically to see breadcrumbs
+            // If you want it to navigate immediately, remove e.preventDefault()
+            e.preventDefault(); 
+            breadcrumbBar.classList.toggle('is-active');
+        });
+
+        // Close breadcrumbs if user clicks anywhere else on the screen
+        document.addEventListener('click', (e) => {
+            if (!homeTrigger.contains(e.target) && !breadcrumbBar.contains(e.target)) {
+                breadcrumbBar.classList.remove('is-active');
+            }
+        });
+
+        // Optional: Re-render icons if new content is loaded dynamically
+        window.addEventListener('load', () => lucide.createIcons());
     </script>
 </body>
 </html>

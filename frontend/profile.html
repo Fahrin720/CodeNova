@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Profile - College Marketplace</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav>
+        <div class="logo">🎓 Marketplace</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="add-product.html">Sell Item</a>
+            <a href="profile.html">My Profile</a>
+            <button id="logoutBtn">Logout</button>
+        </div>
+    </nav>
+
+    <div class="main-layout">
+        <aside class="sidebar">
+            <div class="profile-header">
+                <img id="avatarDisplay" src="https://via.placeholder.com/100" class="avatar">
+                <input type="file" id="avatarInput" hidden onchange="uploadAvatar()">
+                <button class="btn-small" onclick="document.getElementById('avatarInput').click()">Change Photo</button>
+                <h3 id="userName">User Name</h3>
+            </div>
+            <hr>
+            <div class="category-list">
+                <button class="cat-btn active" onclick="showSection('listings')">My Listings</button>
+                <button class="cat-btn" onclick="showSection('orders')">Purchase History</button>
+            </div>
+        </aside>
+
+        <section class="content">
+            <div id="listingsSection">
+                <h2>My Listings</h2>
+                <div id="myListingsGrid" class="product-grid"></div>
+            </div>
+
+            <div id="ordersSection" style="display:none;">
+                <h2>Purchase History</h2>
+                <div id="orderHistoryList" class="order-list"></div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        async function loadProfile() {
+            // Fetch User Details
+            const resp = await fetch('http://127.0.0.1:5000/api/auth/me');
+            const user = await resp.json();
+            document.getElementById('userName').innerText = user.full_name;
+            if(user.avatar_url) document.getElementById('avatarDisplay').src = user.avatar_url;
+
+            loadListings();
+            loadOrders();
+        }
+
+        async function loadListings() {
+            const resp = await fetch('http://127.0.0.1:5000/api/products/my-listings');
+            const products = await resp.json();
+            const grid = document.getElementById('myListingsGrid');
+            grid.innerHTML = products.map(p => `
+                <div class="product-card">
+                    <img src="${p.image_url || 'https://via.placeholder.com/150'}">
+                    <div class="product-info">
+                        <h3>${p.title}</h3>
+                        <p class="price">RM ${p.price}</p>
+                        <p>Status: <strong>${p.status}</strong></p>
+                        ${p.status === 'available' ? `<button class="btn" onclick="markAsSold('${p.product_id}')">Mark as Sold</button>` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function markAsSold(id) {
+            await fetch(`http://127.0.0.1:5000/api/products/status/${id}`, {
+                method: 'PATCH',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({status: 'sold'})
+            });
+            loadListings();
+        }
+
+        function showSection(section) {
+            document.getElementById('listingsSection').style.display = section === 'listings' ? 'block' : 'none';
+            document.getElementById('ordersSection').style.display = section === 'orders' ? 'block' : 'none';
+        }
+
+        // Initialize
+        loadProfile();
+    </script>
+</body>
+</html>

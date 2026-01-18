@@ -21,6 +21,14 @@ def register():
     except Exception as e:
         return jsonify({"error": str(e)}), 400
 
+@auth_bp.route('/me', methods=['GET'])
+def get_current_user():
+    if 'user_id' not in session:
+        return jsonify({"error": "No session"}), 401
+    
+    user = supabase.table("users").select("full_name, email, avatar_url, role").eq("user_id", session['user_id']).single().execute()
+    return jsonify(user.data), 200
+
 @auth_bp.route('/login', methods=['POST'])
 def login():
     data = request.get_json()

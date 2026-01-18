@@ -1,74 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - College Marketplace</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
+    <link rel="stylesheet" href="css/style.css"> </head>
 <body>
-    <div class="login-container">
-        <h1>Create Account</h1>
+    <div class="auth-container">
+        <h2>Create an Account</h2>
         <form id="registerForm">
             <div class="form-group">
-                <label for="fullName">Full Name:</label>
-                <input type="text" id="fullName" name="fullName" required>
+                <label>Full Name</label>
+                <input type="text" id="full_name" required placeholder="Enter your full name">
             </div>
             <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+                <label>Email Address</label>
+                <input type="email" id="email" required placeholder="Enter your college email">
             </div>
             <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
+                <label>Password</label>
+                <input type="password" id="password" required placeholder="Create a password">
             </div>
             <div class="form-group">
-                <label for="confirmPassword">Confirm Password:</label>
-                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                <label>Role</label>
+                <select id="role">
+                    <option value="both">Buyer & Seller (Default)</option>
+                    <option value="buyer">Buyer Only</option>
+                    <option value="seller">Seller Only</option>
+                </select>
             </div>
-            <button type="submit">Register</button>
+            <button type="submit" class="btn">Register</button>
         </form>
-        <p>Already have an account? <a href="/login">Login here</a></p>
-        <div id="message" class="message"></div>
+        <p>Already have an account? <a href="login.html">Login here</a></p>
+        <div id="message"></div>
     </div>
 
     <script>
         document.getElementById('registerForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            const fullName = document.getElementById('fullName').value;
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            
-            if (password !== confirmPassword) {
-                document.getElementById('message').innerHTML = 'Passwords do not match!';
-                return;
-            }
-            
-            try {
-                const response = await fetch('/api/auth/register', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        full_name: fullName,
-                        email: email,
-                        password: password
-                    })
-                });
-                
-                const data = await response.json();
-                if (response.ok) {
-                    document.getElementById('message').innerHTML = 'Registration successful! Redirecting to login...';
-                    document.getElementById('message').style.color = '#27ae60';
-                    setTimeout(() => {
-                        window.location.href = '/login';
-                    }, 2000);
-                } else {
-                    document.getElementById('message').innerHTML = data.error || 'Registration failed';
-                }
-            } catch (error) {
-                document.getElementById('message').innerHTML = 'Error: ' + error.message;
+            const userData = {
+                full_name: document.getElementById('full_name').value,
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value,
+                role: document.getElementById('role').value
+            };
+
+            const response = await fetch('http://127.0.0.1:5000/api/auth/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(userData)
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                document.getElementById('message').innerHTML = `<p style="color: green;">Registration Successful! Redirecting...</p>`;
+                setTimeout(() => { window.location.href = 'login.html'; }, 2000);
+            } else {
+                document.getElementById('message').innerHTML = `<p style="color: red;">Error: ${result.error}</p>`;
             }
         });
     </script>
