@@ -1,134 +1,19 @@
-from flask import Flask, request, jsonify, session, send_from_directory
-import mysql.connector
-import bcrypt
-import os
+from flask import Flask
+from flask_cors import CORS
+from backend.auth.routes import auth_bp
+from backend.products.routes import products_bp
+from backend.chats.routes import chats_bp
+from backend.reviews.routes import reviews_bp
 
-# =========================
-# APP SETUP
-# =========================
-# Get the path to the frontend folder
-frontend_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'frontend'))
-app = Flask(__name__, static_folder=frontend_path, static_url_path='')
-app.secret_key = "super_secret_key_change_later"
+app = Flask(__name__)
+CORS(app)
+app.secret_key = "college_marketplace_secret_2026"
 
-# =========================
-# DATABASE CONNECTION
-# (phpMyAdmin uses MySQL)
-# =========================
-def get_db():
-    return mysql.connector.connect(
-        host="localhost",
-        user="root",          # phpMyAdmin username
-        password="",          # phpMyAdmin password (empty if XAMPP default)
-        database="college_marketplace"
-    )
+# Register ALL folders
+app.register_blueprint(auth_bp, url_prefix='/api/auth')
+app.register_blueprint(products_bp, url_prefix='/api/products')
+app.register_blueprint(chats_bp, url_prefix='/api/chats')
+app.register_blueprint(reviews_bp, url_prefix='/api/reviews')
 
-# =========================
-# REGISTER
-# =========================
-@app.route('/api/auth/register', methods=['POST'])
-def register():
-    data = request.json
-
-    full_name = data.get('full_name')
-    email = data.get('email')
-    password = data.get('password')
-
-    if not full_name or not email or not password:
-        return jsonify({"error": "Missing fields"}), 400
-
-    hashed_pw = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
-
-    db = get_db()
-    cursor = db.cursor()
-
-    try:
-        cursor.execute(
-            "INSERT INTO users (full_name, email, password_hash) VALUES (%s, %s, %s)",
-            (full_name, email, hashed_pw)
-        )
-        db.commit()
-    except mysql.connector.IntegrityError:
-        return jsonify({"error": "Email already exists"}), 400
-    finally:
-        cursor.close()
-        db.close()
-
-    return jsonify({
-        "success": True,
-        "message": "User registered successfully"
-    }), 201
-
-# =========================
-# LOGIN
-# =========================
-@app.route('/api/auth/login', methods=['POST'])
-def login():
-    data = request.json
-    email = data.get('email')
-    password = data.get('password')
-
-    db = get_db()
-    cursor = db.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM users WHERE email = %s", (email,))
-    user = cursor.fetchone()
-    cursor.close()
-    db.close()
-
-    if not user:
-        return jsonify({"error": "Invalid credentials"}), 401
-
-    if not bcrypt.checkpw(password.encode(), user['password_hash'].encode()):
-        return jsonify({"error": "Invalid credentials"}), 401
-
-    session['user_id'] = user['user_id']
-
-    return jsonify({
-        "success": True,
-        "message": "Login successful",
-        "user": {
-            "id": user['user_id'],
-            "name": user['full_name']
-        }
-    })
-
-# =========================
-# CHECK SESSION
-# =========================
-@app.route('/api/auth/me', methods=['GET'])
-def me():
-    if 'user_id' not in session:
-        return jsonify({"error": "Not logged in"}), 401
-
-    db = get_db()
-    cursor = db.cursor(dictionary=True)
-    cursor.execute(
-        "SELECT user_id, full_name, email FROM users WHERE user_id = %s",
-        (session['user_id'],)
-    )
-    user = cursor.fetchone()
-    cursor.close()
-    db.close()
-
-    return jsonify(user)
-
-# =========================
-# LOGOUT
-# =========================
-@app.route('/api/auth/logout', methods=['POST'])
-def logout():
-    session.clear()
-    return jsonify({"message": "Logged out"})
-
-# =========================
-# ROOT
-# =========================
-@app.route('/')
-def home():
-    return send_from_directory(frontend_path, 'index.html')
-
-# =========================
-# RUN SERVER
-# =========================
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000)
+    app.run(debug=True, port=5000)

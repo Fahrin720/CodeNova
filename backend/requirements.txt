@@ -1,3 +1,5 @@
 flask
-mysql-connector-python
+flask-cors
+supabase
+python-dotenv
 bcrypt
