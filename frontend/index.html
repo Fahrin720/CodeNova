@@ -28,7 +28,6 @@
             </div>
             
             <nav class="nav-links">
-                <!-- Precision Trigger ID -->
                 <a href="index.html" class="nav-item active" id="homeTrigger">Home</a>
                 <a href="marketplace.html" class="nav-item">Marketplace</a>
                 <a href="services.html" class="nav-item">Services</a>
@@ -48,18 +47,17 @@
         </div>
     </header>
 
-    <!-- 2. ON-DEMAND BREADCRUMB BOX (Precision Hover) -->
+    <!-- 2. ON-DEMAND BREADCRUMB BOX -->
     <section class="breadcrumb-bar" id="breadcrumbBar">
         <nav class="breadcrumbs">
             <a href="index.html"><i data-lucide="home"></i> Home</a>
             <span class="sep"><i data-lucide="chevron-right"></i></span>
-            <span class="current">Textbooks</span>
+            <span class="current">Main Hub</span>
         </nav>
     </section>
 
-<!-- 3. HERO HUB (Updated with Background Image) -->
+    <!-- 3. HERO HUB (With Background Image) -->
     <section class="hero-hub">
-        <!-- New Background Layer -->
         <div class="hero-bg-image" style="background-image: url(img/kmlimage.jpg);"></div>
         <div class="hero-bg-overlay"></div>
 
@@ -88,7 +86,7 @@
         </div>
     </section>
 
-    <!-- 4. MAIN HUB LAYOUT (Sidebar & Area) -->
+    <!-- 4. MAIN HUB LAYOUT -->
     <main class="container main-layout" id="news">
         
         <!-- SIDEBAR: News & Alerts -->
@@ -100,7 +98,16 @@
                 </div>
         
                 <div class="news-feed">
-                    <!-- Blok E Notice -->
+                    <!-- NEW: Trending Food News Link -->
+                    <div class="news-item blok-e-notice" onclick="window.location.href='news.html'" style="cursor: pointer; border-left: 4px solid #f59e0b;">
+                        <div class="news-meta">
+                            <span class="news-tag" style="background: #fff7ed; color: #f97316;">Trending</span>
+                            <span class="news-time">HOT</span>
+                        </div>
+                        <h4>Cafe Baru Dekat Blok E!</h4>
+                        <p>Cek cafe aesthetic yang baru buka minggu ini. Ada diskon khusus penghuni...</p>
+                    </div>
+
                     <div class="news-item blok-e-notice">
                         <div class="news-meta">
                             <span class="news-tag blok-e">Blok E</span>
@@ -110,7 +117,6 @@
                         <p>Maintenance tonight 10PM - 12AM. Fill up your buckets!</p>
                     </div>
 
-                    <!-- Blok F Notice -->
                     <div class="news-item blok-f-notice">
                         <div class="news-meta">
                             <span class="news-tag blok-f">Blok F</span>
@@ -122,7 +128,6 @@
                 </div>
             </div>
 
-            <!-- Verification Box Refined -->
             <div class="safety-card premium-safety">
                 <div class="shield-glow"><i data-lucide="shield-check"></i></div>
                 <h4>Verify Room Status</h4>
@@ -142,9 +147,7 @@
                 <a href="services.html" class="view-all">View All <i data-lucide="arrow-right"></i></a>
             </div>
 
-            <!-- 1. The Slider Container -->
             <div class="services-scroll-container" id="servicesScroll">
-                
                 <div class="service-mini-card">
                     <div class="card-top">
                         <div class="s-icon"><i data-lucide="printer"></i></div>
@@ -186,97 +189,59 @@
                         <button class="contact-btn-whatsapp"><i data-lucide="message-circle"></i> Message</button>
                     </div>
                 </div>
-
-                <div class="service-mini-card">
-                    <div class="card-top">
-                        <div class="s-icon"><i data-lucide="truck"></i></div>
-                        <span class="status-badge online">Active</span>
-                    </div>
-                    <div class="card-body">
-                        <h4>Food Delivery</h4>
-                        <p>McD/KFC Runner • Room F302</p>
-                    </div>
-                    <div class="card-footer">
-                        <button class="contact-btn-whatsapp"><i data-lucide="message-circle"></i> Message</button>
-                    </div>
-                </div>
-
             </div>
 
-            <!-- 2. THE CUSTOM TRACK -->
             <div class="custom-scroll-track">
                 <div class="custom-scroll-thumb" id="scrollThumb"></div>
             </div>
 
-            <!-- B. MARKETPLACE INCOMINGS -->
+            <!-- MARKETPLACE SECTION -->
             <div class="section-header" style="margin-top: 40px;">
-        <div class="header-main">
-            <h3>New in Marketplace</h3>
-            <p>Authentic student listings</p>
-        </div>
-        <a href="marketplace.html" class="view-all">Shop All <i data-lucide="arrow-right"></i></a>
-    </div>
+                <div class="header-main">
+                    <h3>New in Marketplace</h3>
+                    <p>Authentic student listings</p>
+                </div>
+                <a href="marketplace.html" class="view-all">Shop All <i data-lucide="arrow-right"></i></a>
+            </div>
 
-    <div class="bento-grid">
-        <!-- Featured Product -->
-        <div class="bento-card featured-product">
-            <div class="product-img-container">
-                <div class="img-placeholder skeleton"></div>
-                <span class="product-tag urgent">Urgent</span>
-            </div>
-            <div class="product-info-box">
-                <div class="p-header">
-                    <span class="p-cat">Electronics</span>
-                    <span class="p-price">RM 850</span>
+            <div class="bento-grid">
+                <div class="bento-card featured-product">
+                    <div class="product-img-container">
+                        <div class="img-placeholder skeleton"></div>
+                        <span class="product-tag urgent">Urgent</span>
+                    </div>
+                    <div class="product-info-box">
+                        <div class="p-header">
+                            <span class="p-cat">Electronics</span>
+                            <span class="p-price">RM 850</span>
+                        </div>
+                        <h4>MacBook Air M1 (Silver)</h4>
+                        <p class="p-desc">8GB/256GB. Condition 9/10. Used for 1 year.</p>
+                        <div class="p-footer">
+                            <span class="p-seller"><i data-lucide="map-pin"></i> Blok E, 204</span>
+                            <button class="btn-quick-view"><i data-lucide="eye"></i></button>
+                        </div>
+                    </div>
                 </div>
-                <h4>MacBook Air M1 (Silver)</h4>
-                <p class="p-desc">8GB/256GB. Condition 9/10. Used for 1 year.</p>
-                <div class="p-footer">
-                    <span class="p-seller"><i data-lucide="map-pin"></i> Blok E, 204</span>
-                    <button class="btn-quick-view"><i data-lucide="eye"></i></button>
-                </div>
-            </div>
-        </div>
 
-        <!-- Standard Product 1 -->
-        <div class="bento-card">
-            <div class="product-img-container">
-                <div class="img-placeholder skeleton"></div>
-                <span class="product-tag nego">Nego</span>
-            </div>
-            <div class="product-info-box">
-                <div class="p-header">
-                    <span class="p-cat">Books</span>
-                    <span class="p-price">RM 45</span>
-                </div>
-                <h4>Calculus: Early Transcendentals</h4>
-                <div class="p-footer">
-                    <span class="p-seller"><i data-lucide="map-pin"></i> Blok F, 102</span>
-                    <button class="btn-quick-view"><i data-lucide="plus"></i></button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Standard Product 2 -->
-        <div class="bento-card">
-            <div class="product-img-container">
-                <div class="img-placeholder skeleton"></div>
-            </div>
-            <div class="product-info-box">
-                <div class="p-header">
-                    <span class="p-cat">Dorm Gear</span>
-                    <span class="p-price">RM 25</span>
-                </div>
-                <h4>Standing Fan (Mistral)</h4>
-                <div class="p-footer">
-                    <span class="p-seller"><i data-lucide="map-pin"></i> Blok E, 411</span>
-                    <button class="btn-quick-view"><i data-lucide="plus"></i></button>
+                <div class="bento-card">
+                    <div class="product-img-container">
+                        <div class="img-placeholder skeleton"></div>
+                        <span class="product-tag nego">Nego</span>
+                    </div>
+                    <div class="product-info-box">
+                        <div class="p-header">
+                            <span class="p-cat">Books</span>
+                            <span class="p-price">RM 45</span>
+                        </div>
+                        <h4>Calculus: Early Transcendentals</h4>
+                        <div class="p-footer">
+                            <span class="p-seller"><i data-lucide="map-pin"></i> Blok F, 102</span>
+                            <button class="btn-quick-view"><i data-lucide="plus"></i></button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-
         </section>
     </main>
 
@@ -333,11 +298,9 @@
             slider.scrollLeft = scrollLeft - walk;
         });
 
-        // Update Slider Thumb Position
         slider.addEventListener('scroll', () => {
             const maxScroll = slider.scrollWidth - slider.clientWidth;
             const scrollPercent = (slider.scrollLeft / maxScroll) * 100;
-            // 200px (track) - 60px (thumb) = 140px max move
             const moveX = (scrollPercent / 100) * 140; 
             thumb.style.transform = `translateX(${moveX}px)`;
         });

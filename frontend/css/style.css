@@ -1048,3 +1048,104 @@ input:focus, textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 4p
         margin-top: 30px;
     }
 }
+/* ==========================================================================
+   NEWS INTERFACE STYLES
+   ========================================================================== */
+
+.news-article-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Large Featured Card */
+.news-card-large {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--slate-200);
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.news-card-large:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.article-image {
+    width: 100%;
+    position: relative;
+    background: var(--slate-100);
+}
+
+.article-badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-weight: 800;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+}
+.article-badge.trending { background: #f59e0b; color: white; }
+
+.article-body {
+    padding: 30px;
+}
+
+.article-meta {
+    display: flex;
+    gap: 20px;
+    font-size: 0.8rem;
+    color: var(--slate-400);
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.article-body h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+.article-body p {
+    color: var(--slate-600);
+    margin-bottom: 20px;
+    font-size: 1rem;
+}
+
+/* News Grid for smaller articles */
+.news-grid-two {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.news-card-small {
+    background: var(--white);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--slate-200);
+    overflow: hidden;
+}
+
+.news-card-small .article-body {
+    padding: 20px;
+}
+
+.news-card-small h4 {
+    font-size: 1.1rem;
+    margin-top: 10px;
+}
+
+/* Mobile Fix for News */
+@media (max-width: 768px) {
+    .news-grid-two {
+        grid-template-columns: 1fr;
+    }
+    .article-body h2 {
+        font-size: 1.4rem;
+    }
+}

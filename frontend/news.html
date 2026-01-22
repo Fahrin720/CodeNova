@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dorm News | E & F Hub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <!-- 1. NAVIGATION (Sama dengan Index) -->
+    <header class="glass-nav sticky">
+        <div class="container nav-wrapper">
+            <div class="brand" onclick="window.location.href='index.html'">
+                <div class="bento-logo"><span class="sq"></span><span class="sq"></span><span class="sq"></span><span class="sq"></span></div>
+                <div class="brand-text"><h1>E & F Hub</h1><span class="tagline">Boys' Dormitory Portal</span></div>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-item" id="homeTrigger">Home</a>
+                <a href="marketplace.html" class="nav-item">Marketplace</a>
+                <a href="services.html" class="nav-item">Services</a>
+                <a href="add-product.html" class="nav-item">Post Listing</a>
+            </nav>
+            <div class="nav-actions">
+                <div class="profile-trigger"><img src="https://ui-avatars.com/api/?name=User&background=4f46e5&color=fff" class="avatar-sm"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 2. BREADCRUMBS -->
+    <section class="breadcrumb-bar" id="breadcrumbBar">
+        <nav class="breadcrumbs">
+            <a href="index.html"><i data-lucide="home"></i> Home</a>
+            <span class="sep"><i data-lucide="chevron-right"></i></span>
+            <span class="current">Dorm News</span>
+        </nav>
+    </section>
+
+    <!-- 3. NEWS HERO -->
+    <div class="market-hero" style="background: linear-gradient(135deg, #4f46e5 0%, #818cf8 100%);">
+        <div class="container">
+            <h2>Dorm Bulletin</h2>
+            <p>Apa yang trending di Blok E & F minggu ini?</p>
+        </div>
+    </div>
+
+    <!-- 4. MAIN NEWS LAYOUT -->
+    <main class="container main-layout">
+        
+        <!-- SIDEBAR: News Categories -->
+        <aside class="sidebar">
+            <div class="filter-card">
+                <div class="filter-group">
+                    <h4>Kategori Berita</h4>
+                    <div class="cat-list-market">
+                        <button class="cat-pill active">Semua Berita</button>
+                        <button class="cat-pill">Food & Cafe</button>
+                        <button class="cat-pill">Dorm Alerts</button>
+                        <button class="cat-pill">Events</button>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- CONTENT AREA: Article List -->
+        <section class="content-area">
+            <div class="news-article-list">
+                
+                <!-- FEATURED NEWS: TRENDING CAFE -->
+                <article class="news-card-large">
+                    <div class="article-image skeleton" style="height: 300px;">
+                        <span class="article-badge trending">Trending</span>
+                    </div>
+                    <div class="article-body">
+                        <div class="article-meta">
+                            <span><i data-lucide="calendar"></i> 19 Jan 2026</span>
+                            <span><i data-lucide="user"></i> Admin Blok E</span>
+                        </div>
+                        <h2>Coffee Terminal: Cafe Baru Vibes Aesthetic di Belakang Blok E</h2>
+                        <p>Buat kamu yang hobi nugas sambil ngopi, Cafe Coffee Terminal baru saja resmi dibuka. Menawarkan promo diskon 20% bagi penghuni E & F Hub dengan menunjukkan profil aplikasi...</p>
+                        <button class="btn btn-primary btn-sm">Baca Selengkapnya</button>
+                    </div>
+                </article>
+
+                <!-- SECONDARY NEWS -->
+                <div class="news-grid-two">
+                    <article class="news-card-small">
+                        <div class="article-image skeleton" style="height: 150px;"></div>
+                        <div class="article-body">
+                            <span class="s-badge active">Foodie</span>
+                            <h4>Review Nasi Lemak Pak Mat: Sambal Pedas Nendang!</h4>
+                            <p>Lokasi: Depan Gate F. Harga mahasiswa banget!</p>
+                        </div>
+                    </article>
+
+                    <article class="news-card-small">
+                        <div class="article-image skeleton" style="height: 150px;"></div>
+                        <div class="article-body">
+                            <span class="s-badge demanded">Alert</span>
+                            <h4>Jadwal Pembersihan Tangki Air Blok F</h4>
+                            <p>Harap tampung air sebelum jam 8 malam ini.</p>
+                        </div>
+                    </article>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="monolith-footer">
+        <div class="container footer-grid">
+            <div class="footer-col"><h2>E & F Hub</h2><p>Portal resmi penghuni Blok E & Blok F.</p></div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        // Pakai JS Breadcrumb yang sama dari index.html
+        const homeTrigger = document.getElementById('homeTrigger');
+        const breadcrumbBar = document.getElementById('breadcrumbBar');
+        let hideTimeout;
+        homeTrigger.addEventListener('mouseenter', () => { clearTimeout(hideTimeout); breadcrumbBar.classList.add('is-active'); });
+        homeTrigger.addEventListener('mouseleave', () => { hideTimeout = setTimeout(() => { if (!breadcrumbBar.matches(':hover')) breadcrumbBar.classList.remove('is-active'); }, 200); });
+        breadcrumbBar.addEventListener('mouseenter', () => clearTimeout(hideTimeout));
+        breadcrumbBar.addEventListener('mouseleave', () => breadcrumbBar.classList.remove('is-active'));
+    </script>
+</body>
+</html>
