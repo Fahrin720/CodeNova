@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account | E & F Hub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="auth-bg">
+
+    <header class="glass-nav sticky">
+        <div class="container nav-wrapper">
+            <div class="brand" onclick="window.location.href='index.html'">
+                <div class="bento-logo"><span class="sq"></span><span class="sq"></span><span class="sq"></span><span class="sq"></span></div>
+                <div class="brand-text"><h1>E & F Hub</h1><span class="tagline">Boys' Dormitory Portal</span></div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="auth-card signup-card">
+            <div class="auth-header">
+                <h2>Join the Hub</h2>
+                <p>Create your exclusive Blok E & F profile</p>
+            </div>
+
+            <form id="signupForm">
+                <div class="form-grid">
+                    <div class="input-group">
+                        <label>Full Name</label>
+                        <input type="text" placeholder="Ariff Syahmi" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Student ID</label>
+                        <input type="text" placeholder="2024..." required>
+                    </div>
+                </div>
+
+                <div class="form-grid">
+                    <div class="input-group">
+                        <label>Blok & Room</label>
+                        <select required>
+                            <option value="">Select Room</option>
+                            <option>Blok E - 101</option>
+                            <option>Blok E - 102</option>
+                            <option>Blok F - 101</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>WhatsApp Number</label>
+                        <input type="text" placeholder="+60..." required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Create Password</label>
+                    <div class="input-wrapper">
+                        <i data-lucide="lock"></i>
+                        <input type="password" id="regPass" placeholder="Min. 8 characters" required>
+                        <button type="button" class="toggle-pass" onclick="togglePass('regPass')">
+                            <i data-lucide="eye" id="regPassIcon"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Create Account</button>
+            </form>
+
+            <div class="auth-footer">
+                <p>Already a member? <a href="login.html">Login here</a></p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="monolith-footer">
+        <div class="container">
+            <p>&copy; 2026 E & F Hub. Student-Only Access.</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        function togglePass(id) {
+            const input = document.getElementById(id);
+            const icon = document.getElementById(id + 'Icon');
+            input.type = input.type === "password" ? "text" : "password";
+            icon.setAttribute('data-lucide', input.type === "text" ? "eye-off" : "eye");
+            lucide.createIcons();
+        }
+    </script>
+</body>
+</html>
