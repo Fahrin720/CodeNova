@@ -1150,6 +1150,7 @@ input:focus, textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 4p
     }
 }
 /* ==========================================================================
+<<<<<<< HEAD
    LAUNDRY & CAFE COMPONENTS
    ========================================================================== */
 
@@ -1979,4 +1980,110 @@ input:focus, textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 4p
     .avatar-massive-wrapper { position: absolute; top: -70px; left: 50%; transform: translateX(-50%); }
     .user-cta-group { margin: 0; width: 100%; }
     .toolkit-grid { grid-template-columns: repeat(2, 1fr); }
+=======
+   AUTH PAGE SPECIFICS
+   ========================================================================== */
+
+.auth-bg {
+    background: radial-gradient(circle at top right, #eef2ff, var(--bg));
+    min-height: 100vh;
+}
+
+.auth-card {
+    background: var(--white);
+    max-width: 450px;
+    margin: 60px auto;
+    padding: 40px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--slate-200);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+}
+
+.signup-card {
+    max-width: 550px; /* Wider for the grid */
+}
+
+.auth-header h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 8px;
+    letter-spacing: -1px;
+}
+
+.auth-header p {
+    color: var(--slate-400);
+    margin-bottom: 30px;
+}
+
+/* Input Wrappers for Icons */
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper i:first-child {
+    position: absolute;
+    left: 14px;
+    width: 18px;
+    color: var(--slate-400);
+}
+
+.input-wrapper input {
+    padding-left: 44px !important;
+}
+
+.toggle-pass {
+    position: absolute;
+    right: 14px;
+    background: none;
+    border: none;
+    color: var(--slate-400);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.toggle-pass:hover { color: var(--primary); }
+
+.auth-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    font-size: 0.85rem;
+}
+
+.forgot-link {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-footer {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid var(--slate-100);
+    font-size: 0.9rem;
+    color: var(--slate-600);
+}
+
+.auth-footer a {
+    color: var(--primary);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+/* Responsive Auth */
+@media (max-width: 480px) {
+    .auth-card {
+        margin: 20px auto;
+        padding: 30px 20px;
+        border: none;
+        box-shadow: none;
+        background: transparent;
+    }
+>>>>>>> 9a3b9e3b15e9ff5da4241544c39f7b77ca4253fb
 }
