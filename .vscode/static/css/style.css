@@ -396,10 +396,6 @@ input:focus, textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 4p
     gap: 5px;
     margin-top: 12px;
 }
-
-/* ==========================================================================
-   MARKETPLACE CARD REFINEMENT
-   ========================================================================== */
 .product-img-container {
     width: 100%;
     height: 160px;
@@ -2091,6 +2087,7 @@ input:focus, textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 4p
    STUNNING AUTH INTERFACE (Login/Signup)
    ========================================================================== */
 
+}
 .auth-page {
     height: 100vh;
     width: 100vw;
