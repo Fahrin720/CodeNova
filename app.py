@@ -1,20 +1,15 @@
 import os
 from datetime import datetime, timedelta
 from functools import wraps
-from flask import Flask, render_template, request, redirect, url_for, session, jsonify
+from flask import Flask, render_template, request, redirect, url_for, session
 
-# Find the frontend folder correctly
-base_dir = os.path.abspath(os.path.dirname(__file__))
-frontend_dir = os.path.abspath(os.path.join(base_dir, '../frontend'))
-
-app = Flask(__name__, 
-            template_folder=frontend_dir, 
-            static_folder=frontend_dir,
-            static_url_path='/static') 
+# Standard Flask setup. 
+# It automatically looks for a 'templates' folder and a 'static' folder.
+app = Flask(__name__) 
 
 app.secret_key = 'kmlife_ultra_secret_2026'
 
-# 1. MOCK DATABASE
+# --- 1. MOCK DATABASE ---
 users = {
     "2024111": {
         "student_id": "2024111", "name": "Ariff Syahmi", "password": "123", 
@@ -22,30 +17,26 @@ users = {
     }
 }
 
-# 2. THE BOUNCER (Access Control)
+# --- 2. ACCESS CONTROL ---
 @app.before_request
 def force_login():
-    # Allow CSS, JS, and Images to always load
-    if request.path.startswith('/static') or request.path.endswith(('.css', '.js', '.jpg', '.png', '.jpeg', '.svg')):
+    # Allow static files (CSS/Images) to load automatically
+    if request.path.startswith('/static'):
         return
 
-    # Pages that don't need login
     allowed_routes = ['login_page', 'signup_page', 'handle_login', 'handle_signup']
-    
     if 'user_id' not in session and request.endpoint not in allowed_routes:
         return redirect(url_for('login_page'))
 
-# 3. GLOBAL USER DATA
 @app.context_processor
 def inject_user():
     user_id = session.get('user_id')
     curr_user = users.get(user_id) if user_id else None
     return dict(user=curr_user)
 
-# 4. CLEAN ROUTES (We removed .html from the URLs to prevent 404)
+# --- 3. ROUTES ---
 @app.route('/')
-def home_page():
-    return render_template('index.html')
+def home_page(): return render_template('index.html')
 
 @app.route('/login')
 def login_page():
@@ -53,8 +44,7 @@ def login_page():
     return render_template('login.html')
 
 @app.route('/signup')
-def signup_page():
-    return render_template('signup.html')
+def signup_page(): return render_template('signup.html')
 
 @app.route('/marketplace')
 def marketplace_page(): return render_template('marketplace.html')
@@ -74,7 +64,7 @@ def news_page(): return render_template('news.html')
 @app.route('/profile')
 def profile_page(): return render_template('profile.html')
 
-# 5. ACTION LOGIC
+# --- 4. ACTION LOGIC ---
 @app.route('/api/auth/login', methods=['POST'])
 def handle_login():
     sid = request.form.get('student_id')
