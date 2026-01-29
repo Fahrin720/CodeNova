@@ -5,41 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dorm Services | E & F Hub</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
     <!-- 1. GLOBAL NAVIGATION -->
-    <header class="glass-nav sticky">
-        <div class="container nav-wrapper">
-            <div class="brand" onclick="window.location.href='index.html'">
-                <div class="bento-logo">
-                    <span class="sq"></span><span class="sq"></span>
-                    <span class="sq"></span><span class="sq"></span>
-                </div>
-                <div class="brand-text">
-                    <h1>E & F Hub</h1>
-                    <span class="tagline">Boys' Dormitory Portal</span>
-                </div>
+<!-- GLOBAL NAVIGATION -->
+<header class="glass-nav sticky">
+    <div class="container nav-wrapper">
+        <div class="brand" onclick="window.location.href='index.html'">
+            <div class="bento-logo">
+                <span class="sq"></span><span class="sq"></span>
+                <span class="sq"></span><span class="sq"></span>
             </div>
-            <nav class="nav-links">
-                <a href="index.html" class="nav-item" id="homeTrigger">Home</a>
-                <a href="marketplace.html" class="nav-item">Marketplace</a>
-                <a href="services.html" class="nav-item active">Services</a>
-                <a href="add-product.html" class="nav-item">Post Listing</a>
-            </nav>
-            <div class="nav-actions">
-                <div class="search-input">
-                    <i data-lucide="search"></i>
-                    <input type="text" placeholder="Search services...">
-                </div>
-                <div class="profile-trigger" onclick="window.location.href='profile.html'">
-                    <img src="https://ui-avatars.com/api/?name=User+Name&background=4f46e5&color=fff" alt="Profile" class="avatar-sm">
-                </div>
+            <div class="brand-text">
+                <h1>KMLife</h1>
+                <span class="tagline">Official College Portal</span>
             </div>
         </div>
-    </header>
+        
+        <nav class="nav-links">
+            <a href="index.html" class="nav-item">Home</a>
+            <a href="marketplace.html" class="nav-item">Marketplace</a>
+            <a href="services.html" class="nav-item active" id="homeTrigger">Services</a>
+            <a href="laundry.html" class="nav-item">Laundry</a>
+            <a href="cafe.html" class="nav-item">Cafe</a>
+            <a href="news.html" class="nav-item">News</a>
+        </nav>
+
+        <div class="nav-actions">
+            <div class="search-input">
+                <i data-lucide="search"></i>
+                <input type="text" placeholder="Search KMLife...">
+            </div>
+            
+            <div class="profile-trigger" onclick="window.location.href='profile.html'">
+                <img src="https://ui-avatars.com/api/?name=User&background=4f46e5&color=fff" alt="Profile" class="avatar-sm">
+            </div>
+        </div>
+    </div>
+</header>
 
     <!-- 2. BREADCRUMBS (Home Hover) -->
     <section class="breadcrumb-bar" id="breadcrumbBar">
@@ -193,20 +200,74 @@
         </section>
     </main>
 
-    <!-- 4. FOOTER -->
-    <footer class="monolith-footer">
-        <div class="container footer-grid">
-            <div class="footer-col">
-                <h2>E & F Hub</h2>
-                <p>Empowering the boys of Blok E & F through community talent.</p>
+<!-- ==========================================================================
+   KMLIFE MASTER FOOTER (HCI: Consistency)
+   ========================================================================== -->
+<footer class="monolith-footer">
+    <div class="container footer-grid">
+        
+        <!-- Column 1: Brand & Identity -->
+        <div class="footer-col">
+            <div class="brand">
+                <div class="bento-logo">
+                    <!-- Footer-specific white squares -->
+                    <span class="sq" style="background: white;"></span>
+                    <span class="sq" style="background: white;"></span>
+                    <span class="sq" style="background: white;"></span>
+                    <span class="sq" style="background: white;"></span>
+                </div>
+                <h2 style="color: white; margin-left: 10px;">KMLife</h2>
             </div>
-            <div class="footer-col">
-                <h4>Support</h4>
-                <a href="#">Safety Rules</a>
-                <a href="#">Report Service</a>
+            <p style="opacity: 0.7; margin-top: 15px; font-size: 0.9rem; line-height: 1.5;">
+                The definitive campus companion. Built by students, for students to enhance college life through community and trade.
+            </p>
+        </div>
+
+        <!-- Column 2: Explore -->
+        <div class="footer-col">
+            <h4>Platform</h4>
+            <a href="index.html">Home Hub</a>
+            <a href="marketplace.html">Marketplace</a>
+            <a href="services.html">Service Hub</a>
+            <a href="laundry.html">Laundry Status</a>
+            <a href="cafe.html">Cafe Directory</a>
+        </div>
+
+        <!-- Column 3: Trust & Support -->
+        <div class="footer-col">
+            <h4>Trust & Safety</h4>
+            <a href="#">Campus Safety Guidelines</a>
+            <a href="#">Report a Listing</a>
+            <a href="#">Verification FAQ</a>
+            <a href="#">Terms of Service</a>
+        </div>
+
+        <!-- Column 4: Emergency Contacts -->
+        <div class="footer-col">
+            <h4>Emergency</h4>
+            <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 8px;">
+                <i data-lucide="phone" style="width:14px; vertical-align:middle; margin-right:5px;"></i> 
+                Security: +6012-3456789
+            </p>
+            <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 8px;">
+                <i data-lucide="phone" style="width:14px; vertical-align:middle; margin-right:5px;"></i> 
+                Dorm Office: +6012-9876543
+            </p>
+            <div class="social-icons" style="margin-top: 20px; display: flex; gap: 15px;">
+                <a href="#"><i data-lucide="instagram"></i></a>
+                <a href="#"><i data-lucide="twitter"></i></a>
             </div>
         </div>
-    </footer>
+
+    </div>
+
+    <!-- Copyright Row -->
+    <div class="footer-bottom">
+        <div class="container">
+            <p>&copy; 2026 KMLife Portal. Developed with HCI Principles.</p>
+        </div>
+    </div>
+</footer>
 
     <script>
         lucide.createIcons();

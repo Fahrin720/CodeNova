@@ -1,32 +1,45 @@
-from flask import Flask
-from flask_cors import CORS
-from backend.auth.routes import auth_bp
-from backend.products.routes import products_bp
-from backend.chats.routes import chats_bp
-from backend.reviews.routes import reviews_bp
-from backend.orders.routes import orders_bp
+from flask import Flask, render_template
 
-app = Flask(__name__, static_folder='../frontend', static_url_path='')
+# We added 'template_folder' and 'static_folder' here.
+# '../frontend' tells Flask: "Go up one folder, then look inside the frontend folder"
+app = Flask(__name__, 
+            template_folder='../frontend',
+            static_folder='../frontend')
 
-# Enable CORS (though now less critical since we serve frontend here)
-CORS(app, supports_credentials=True)
-
-app.secret_key = "college_marketplace_secret_2026"
-
-# Register ALL folders (Blueprints)
-app.register_blueprint(auth_bp, url_prefix='/api/auth')
-app.register_blueprint(products_bp, url_prefix='/api/products')
-app.register_blueprint(chats_bp, url_prefix='/api/chats')
-app.register_blueprint(reviews_bp, url_prefix='/api/reviews')
-app.register_blueprint(orders_bp, url_prefix='/api/orders')
+# --- ROUTES ---
 
 @app.route('/')
 def home():
-    return app.send_static_file('index.html')
+    return render_template('index.html')
 
-@app.route('/<path:path>')
-def serve_static(path):
-    return app.send_static_file(path)
+@app.route('/marketplace.html')
+def marketplace():
+    return render_template('marketplace.html')
+
+@app.route('/services.html')
+def services():
+    return render_template('services.html')
+
+@app.route('/laundry.html')
+def laundry():
+    return render_template('laundry.html')
+
+@app.route('/cafe.html')
+def cafe():
+    return render_template('cafe.html')
+
+@app.route('/news.html')
+def news():
+    return render_template('news.html')
+
+@app.route('/profile.html')
+def profile():
+    return render_template('profile.html')
+
+@app.route('/add-product.html')
+def add_product():
+    return render_template('add-product.html')
 
 if __name__ == '__main__':
+    # Run the server on port 5000
     app.run(debug=True, port=5000)

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafe Hub | KMLife</title>
+    <!-- 1. CHECK THIS PATH: Make sure your CSS is in a folder named 'css' -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <!-- GLOBAL NAVIGATION -->
+<!-- GLOBAL NAVIGATION -->
+<header class="glass-nav sticky">
+    <div class="container nav-wrapper">
+        <div class="brand" onclick="window.location.href='index.html'">
+            <div class="bento-logo">
+                <span class="sq"></span><span class="sq"></span>
+                <span class="sq"></span><span class="sq"></span>
+            </div>
+            <div class="brand-text">
+                <h1>KMLife</h1>
+                <span class="tagline">Official College Portal</span>
+            </div>
+        </div>
+        
+        <nav class="nav-links">
+            <a href="index.html" class="nav-item">Home</a>
+            <a href="marketplace.html" class="nav-item">Marketplace</a>
+            <a href="services.html" class="nav-item">Services</a>
+            <a href="laundry.html" class="nav-item">Laundry</a>
+            <a href="cafe.html" class="nav-item active" id="homeTrigger">Cafe</a>
+            <a href="news.html" class="nav-item">News</a>
+        </nav>
+
+        <div class="nav-actions">
+            <div class="search-input">
+                <i data-lucide="search"></i>
+                <input type="text" placeholder="Search KMLife...">
+            </div>
+            
+            <div class="profile-trigger" onclick="window.location.href='profile.html'">
+                <img src="https://ui-avatars.com/api/?name=User&background=4f46e5&color=fff" alt="Profile" class="avatar-sm">
+            </div>
+        </div>
+    </div>
+</header>
+
+    <!-- BREADCRUMBS -->
+    <section class="breadcrumb-bar" id="breadcrumbBar">
+        <nav class="breadcrumbs">
+            <a href="index.html"><i data-lucide="home"></i> Home</a>
+            <span class="sep"><i data-lucide="chevron-right"></i></span>
+            <span class="current">Cafe Hub</span>
+        </nav>
+    </section>
+
+    <!-- CAFE HERO SLIDER -->
+    <section class="container" style="margin-top: 30px;">
+        <div class="cafe-news-slider">
+            <div class="slide-item">
+                <div class="slide-overlay"></div>
+                <!-- Add your cafe background image here -->
+                <div class="slide-img skeleton"></div> 
+                <div class="slide-content">
+                    <span class="product-tag urgent">HOT PICK</span>
+                    <h2>Nasi Lemak Blok F: Now with extra spicy sambal!</h2>
+                    <p>Voted best breakfast in KMLife for 3 weeks straight.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="container main-layout">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="filter-card">
+                <h4>Cafe Categories</h4>
+                <div class="cat-list-market">
+                    <button class="cat-pill active">All Outlets</button>
+                    <button class="cat-pill">Fast Food</button>
+                    <button class="cat-pill">Traditional</button>
+                    <button class="cat-pill">Coffee & Desserts</button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- CAFE DIRECTORY -->
+        <section class="content-area">
+            <div class="section-header">
+                <div class="header-main">
+                    <h3>Cafe Directory</h3>
+                    <p>Open outlets in Blok E & F</p>
+                </div>
+            </div>
+
+            <div class="bento-grid">
+                <!-- Cafe Card 1 -->
+                <div class="bento-card">
+                    <div class="product-image skeleton">
+                        <span class="status-badge online">Open</span>
+                    </div>
+                    <div class="product-info-box">
+                        <div class="p-header">
+                            <span class="p-cat">Coffee & Pastry</span>
+                        </div>
+                        <h4>The Coffee Terminal</h4>
+                        <p class="p-seller"><i data-lucide="map-pin"></i> Blok E Lobby</p>
+                        <div class="cafe-news-mini">
+                            <b>News:</b> Free cookies with every Latte until 2PM!
+                        </div>
+                        <button class="btn btn-dark w-100">Browse Menu</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+<!-- ==========================================================================
+   KMLIFE MASTER FOOTER (HCI: Consistency)
+   ========================================================================== -->
+<footer class="monolith-footer">
+    <div class="container footer-grid">
+        
+        <!-- Column 1: Brand & Identity -->
+        <div class="footer-col">
+            <div class="brand">
+                <div class="bento-logo">
+                    <!-- Footer-specific white squares -->
+                    <span class="sq" style="background: white;"></span>
+                    <span class="sq" style="background: white;"></span>
+                    <span class="sq" style="background: white;"></span>
+                    <span class="sq" style="background: white;"></span>
+                </div>
+                <h2 style="color: white; margin-left: 10px;">KMLife</h2>
+            </div>
+            <p style="opacity: 0.7; margin-top: 15px; font-size: 0.9rem; line-height: 1.5;">
+                The definitive campus companion. Built by students, for students to enhance college life through community and trade.
+            </p>
+        </div>
+
+        <!-- Column 2: Explore -->
+        <div class="footer-col">
+            <h4>Platform</h4>
+            <a href="index.html">Home Hub</a>
+            <a href="marketplace.html">Marketplace</a>
+            <a href="services.html">Service Hub</a>
+            <a href="laundry.html">Laundry Status</a>
+            <a href="cafe.html">Cafe Directory</a>
+        </div>
+
+        <!-- Column 3: Trust & Support -->
+        <div class="footer-col">
+            <h4>Trust & Safety</h4>
+            <a href="#">Campus Safety Guidelines</a>
+            <a href="#">Report a Listing</a>
+            <a href="#">Verification FAQ</a>
+            <a href="#">Terms of Service</a>
+        </div>
+
+        <!-- Column 4: Emergency Contacts -->
+        <div class="footer-col">
+            <h4>Emergency</h4>
+            <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 8px;">
+                <i data-lucide="phone" style="width:14px; vertical-align:middle; margin-right:5px;"></i> 
+                Security: +6012-3456789
+            </p>
+            <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 8px;">
+                <i data-lucide="phone" style="width:14px; vertical-align:middle; margin-right:5px;"></i> 
+                Dorm Office: +6012-9876543
+            </p>
+            <div class="social-icons" style="margin-top: 20px; display: flex; gap: 15px;">
+                <a href="#"><i data-lucide="instagram"></i></a>
+                <a href="#"><i data-lucide="twitter"></i></a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Copyright Row -->
+    <div class="footer-bottom">
+        <div class="container">
+            <p>&copy; 2026 KMLife Portal. Developed with HCI Principles.</p>
+        </div>
+    </div>
+</footer>
+    <script>
+        lucide.createIcons();
+        // Insert the breadcrumb hover JS here
+    </script>
+</body>
+</html>

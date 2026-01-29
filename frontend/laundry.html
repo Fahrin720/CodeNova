@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laundry Hub | KMLife</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <!-- GLOBAL NAVIGATION (Consistent with KMLife) -->
+    <!-- GLOBAL NAVIGATION -->
+<header class="glass-nav sticky">
+    <div class="container nav-wrapper">
+        <div class="brand" onclick="window.location.href='index.html'">
+            <div class="bento-logo">
+                <span class="sq"></span><span class="sq"></span>
+                <span class="sq"></span><span class="sq"></span>
+            </div>
+            <div class="brand-text">
+                <h1>KMLife</h1>
+                <span class="tagline">Official College Portal</span>
+            </div>
+        </div>
+        
+        <nav class="nav-links">
+            <a href="index.html" class="nav-item">Home</a>
+            <a href="marketplace.html" class="nav-item">Marketplace</a>
+            <a href="services.html" class="nav-item">Services</a>
+            <a href="laundry.html" class="nav-item active" id="homeTrigger">Laundry</a>
+            <a href="cafe.html" class="nav-item">Cafe</a>
+            <a href="news.html" class="nav-item">News</a>
+        </nav>
+
+        <div class="nav-actions">
+            <div class="search-input">
+                <i data-lucide="search"></i>
+                <input type="text" placeholder="Search KMLife...">
+            </div>
+            
+            <div class="profile-trigger" onclick="window.location.href='profile.html'">
+                <img src="https://ui-avatars.com/api/?name=User&background=4f46e5&color=fff" alt="Profile" class="avatar-sm">
+            </div>
+        </div>
+    </div>
+</header>
+
+    <main class="container main-layout">
+        
+        <!-- SIDEBAR: My Wallet & Global Stats -->
+        <aside class="sidebar">
+            <div class="reward-card-premium">
+                <div class="coin-balance">
+                    <i data-lucide="database" class="coin-icon"></i>
+                    <div>
+                        <span class="label">Your Balance</span>
+                        <h3>150 KMCoin</h3>
+                    </div>
+                </div>
+                <p>Report machine status and earn <b>5 Coins</b> per update!</p>
+            </div>
+
+            <div class="filter-group" style="margin-top:30px;">
+                <h4>Select Building</h4>
+                <div class="block-selector-vertical">
+                    <!-- A to F -->
+                    <button class="block-pill active">Blok A <span class="status-dot online"></span></button>
+                    <button class="block-pill">Blok B <span class="status-dot online"></span></button>
+                    <button class="block-pill">Blok C <span class="status-dot offline"></span></button>
+                    <button class="block-pill">Blok D <span class="status-dot online"></span></button>
+                    <button class="block-pill">Blok E <span class="status-dot online"></span></button>
+                    <button class="block-pill">Blok F <span class="status-dot online"></span></button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT: The Laundry Room Diagram -->
+        <section class="content-area">
+            <div class="room-status-header">
+                <div>
+                    <h2>Blok E Laundry Room</h2>
+                    <p><i data-lucide="map-pin"></i> Ground Floor, East Wing</p>
+                </div>
+                <div class="legend">
+                    <span class="l-item"><span class="dot available"></span> Available</span>
+                    <span class="l-item"><span class="dot busy"></span> Busy</span>
+                </div>
+            </div>
+
+            <!-- THE DIAGRAM CONTAINER -->
+            <div class="laundry-diagram-card">
+                
+                <!-- TOP SECTION: 3 DRYERS -->
+                <div class="diagram-section">
+                    <div class="section-label">Dryers <span>(Stack View)</span></div>
+                    <div class="dryer-stack">
+                        <!-- Dryer Unit -->
+                        <div class="machine-box dryer busy" onclick="showMachineDetails('D1', 'Busy', 'Aiman (E202)', '15m')">
+                            <div class="machine-icon"><i data-lucide="wind"></i></div>
+                            <div class="machine-meta">
+                                <b>D1</b>
+                                <span class="timer">15m</span>
+                            </div>
+                        </div>
+                        <div class="machine-box dryer available" onclick="showMachineDetails('D2', 'Available', '-', '-')">
+                            <div class="machine-icon"><i data-lucide="wind"></i></div>
+                            <b>D2</b>
+                        </div>
+                        <div class="machine-box dryer available" onclick="showMachineDetails('D3', 'Available', '-', '-')">
+                            <div class="machine-icon"><i data-lucide="wind"></i></div>
+                            <b>D3</b>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BOTTOM SECTION: 7 WASHERS -->
+                <div class="diagram-section">
+                    <div class="section-label">Washing Machines <span>(Floor Layout)</span></div>
+                    <div class="washer-row">
+                        <!-- Washer Unit -->
+                        <div class="machine-box washer busy" onclick="showMachineDetails('W1', 'Busy', 'Ziq (E104)', '40m')">
+                            <div class="machine-icon"><i data-lucide="waves"></i></div>
+                            <div class="machine-meta">
+                                <b>W1</b>
+                                <span class="timer">40m</span>
+                            </div>
+                        </div>
+                        <!-- Repeat for 7 Washers -->
+                        <div class="machine-box washer available" onclick="showMachineDetails('W2', 'Available', '-', '-')">
+                            <div class="machine-icon"><i data-lucide="waves"></i></div>
+                            <b>W2</b>
+                        </div>
+                        <div class="machine-box washer available" onclick="showMachineDetails('W3', 'Available', '-', '-')">
+                            <div class="machine-icon"><i data-lucide="waves"></i></div>
+                            <b>W3</b>
+                        </div>
+                        <div class="machine-box washer available" onclick="showMachineDetails('W4', 'Available', '-', '-')">
+                            <div class="machine-icon"><i data-lucide="waves"></i></div>
+                            <b>W4</b>
+                        </div>
+                        <div class="machine-box washer available" onclick="showMachineDetails('W5', 'Available', '-', '-')">
+                            <div class="machine-icon"><i data-lucide="waves"></i></div>
+                            <b>W5</b>
+                        </div>
+                        <div class="machine-box washer available" onclick="showMachineDetails('W6', 'Available', '-', '-')">
+                            <div class="machine-icon"><i data-lucide="waves"></i></div>
+                            <b>W6</b>
+                        </div>
+                        <div class="machine-box washer available" onclick="showMachineDetails('W7', 'Available', '-', '-')">
+                            <div class="machine-icon"><i data-lucide="waves"></i></div>
+                            <b>W7</b>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- MACHINE DETAILS MODAL (Glassmorphism) -->
+    <div id="machineModal" class="modal-blur">
+        <div class="modal-card-premium">
+            <div class="modal-top">
+                <h3 id="mTitle">Machine W1</h3>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body-content">
+                <div class="main-stat">
+                    <span class="price-badge">RM 3.00</span>
+                    <p id="mStatus">Status: <span class="text-orange">Busy</span></p>
+                </div>
+                <div class="user-info-box">
+                    <div class="u-row"><i data-lucide="user"></i> <span>Current User:</span> <b id="mUser">Ariff Syahmi</b></div>
+                    <div class="u-row"><i data-lucide="clock"></i> <span>Time Remaining:</span> <b id="mTime">35 Minutes</b></div>
+                </div>
+                <div class="reward-cta">
+                    <p>Earn <b>+5 Coins</b> by updating the live status!</p>
+                    <button class="btn btn-primary w-100">Update Live Status</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- ==========================================================================
+   KMLIFE MASTER FOOTER (HCI: Consistency)
+   ========================================================================== -->
+<footer class="monolith-footer">
+    <div class="container footer-grid">
+        
+        <!-- Column 1: Brand & Identity -->
+        <div class="footer-col">
+            <div class="brand">
+                <div class="bento-logo">
+                    <!-- Footer-specific white squares -->
+                    <span class="sq" style="background: white;"></span>
+                    <span class="sq" style="background: white;"></span>
+                    <span class="sq" style="background: white;"></span>
+                    <span class="sq" style="background: white;"></span>
+                </div>
+                <h2 style="color: white; margin-left: 10px;">KMLife</h2>
+            </div>
+            <p style="opacity: 0.7; margin-top: 15px; font-size: 0.9rem; line-height: 1.5;">
+                The definitive campus companion. Built by students, for students to enhance college life through community and trade.
+            </p>
+        </div>
+
+        <!-- Column 2: Explore -->
+        <div class="footer-col">
+            <h4>Platform</h4>
+            <a href="index.html">Home Hub</a>
+            <a href="marketplace.html">Marketplace</a>
+            <a href="services.html">Service Hub</a>
+            <a href="laundry.html">Laundry Status</a>
+            <a href="cafe.html">Cafe Directory</a>
+        </div>
+
+        <!-- Column 3: Trust & Support -->
+        <div class="footer-col">
+            <h4>Trust & Safety</h4>
+            <a href="#">Campus Safety Guidelines</a>
+            <a href="#">Report a Listing</a>
+            <a href="#">Verification FAQ</a>
+            <a href="#">Terms of Service</a>
+        </div>
+
+        <!-- Column 4: Emergency Contacts -->
+        <div class="footer-col">
+            <h4>Emergency</h4>
+            <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 8px;">
+                <i data-lucide="phone" style="width:14px; vertical-align:middle; margin-right:5px;"></i> 
+                Security: +6012-3456789
+            </p>
+            <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 8px;">
+                <i data-lucide="phone" style="width:14px; vertical-align:middle; margin-right:5px;"></i> 
+                Dorm Office: +6012-9876543
+            </p>
+            <div class="social-icons" style="margin-top: 20px; display: flex; gap: 15px;">
+                <a href="#"><i data-lucide="instagram"></i></a>
+                <a href="#"><i data-lucide="twitter"></i></a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Copyright Row -->
+    <div class="footer-bottom">
+        <div class="container">
+            <p>&copy; 2026 KMLife Portal. Developed with HCI Principles.</p>
+        </div>
+    </div>
+</footer>
+    <script>
+        lucide.createIcons();
+        function showMachineDetails(id, status, user, time) {
+            document.getElementById('mTitle').innerText = "Machine " + id;
+            document.getElementById('mStatus').innerHTML = `Status: <span class="${status === 'Available' ? 'text-green' : 'text-orange'}">${status}</span>`;
+            document.getElementById('mUser').innerText = user;
+            document.getElementById('mTime').innerText = time;
+            document.getElementById('machineModal').style.display = 'flex';
+        }
+        function closeModal() { document.getElementById('machineModal').style.display = 'none'; }
+    </script>
+</body>
+</html>

@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E & F Hub | Boys' Dormitory Portal</title>
+    <title>KMLife | Official College Community Portal</title>
     <!-- Linking the Master CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <!-- Typography -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <!-- Icons -->
@@ -13,7 +14,7 @@
 </head>
 <body>
 
-    <!-- 1. GLOBAL NAVIGATION (HCI: Consistency) -->
+    <!-- 1. GLOBAL NAVIGATION (Updated for KMLife) -->
     <header class="glass-nav sticky">
         <div class="container nav-wrapper">
             <div class="brand" onclick="window.location.href='index.html'">
@@ -22,8 +23,8 @@
                     <span class="sq"></span><span class="sq"></span>
                 </div>
                 <div class="brand-text">
-                    <h1>E & F Hub</h1>
-                    <span class="tagline">Boys' Dormitory Portal</span>
+                    <h1>KMLife</h1>
+                    <span class="tagline">Official College Community Portal</span>
                 </div>
             </div>
             
@@ -31,13 +32,15 @@
                 <a href="index.html" class="nav-item active" id="homeTrigger">Home</a>
                 <a href="marketplace.html" class="nav-item">Marketplace</a>
                 <a href="services.html" class="nav-item">Services</a>
-                <a href="add-product.html" class="nav-item">Post Listing</a>
+                <a href="laundry.html" class="nav-item">Laundry</a>
+                <a href="cafe.html" class="nav-item">Cafe</a>
+                <a href="news.html" class="nav-item">News</a>
             </nav>
 
             <div class="nav-actions">
                 <div class="search-input">
                     <i data-lucide="search"></i>
-                    <input type="text" placeholder="Search news or items...">
+                    <input type="text" placeholder="Search campus...">
                 </div>
                 
                 <div class="profile-trigger" onclick="window.location.href='profile.html'">
@@ -47,107 +50,112 @@
         </div>
     </header>
 
-    <!-- 2. ON-DEMAND BREADCRUMB BOX -->
+    <!-- 2. ON-DEMAND BREADCRUMB BOX (Precision Hover) -->
     <section class="breadcrumb-bar" id="breadcrumbBar">
         <nav class="breadcrumbs">
             <a href="index.html"><i data-lucide="home"></i> Home</a>
             <span class="sep"><i data-lucide="chevron-right"></i></span>
-            <span class="current">Main Hub</span>
+            <span class="current">Campus Hub</span>
         </nav>
     </section>
 
-    <!-- 3. HERO HUB (With Background Image) -->
+    <!-- 3. HERO HUB (Rebranded & Blurred Background) -->
     <section class="hero-hub">
-        <div class="hero-bg-image" style="background-image: url(img/kmlimage.jpg);"></div>
+        <!-- Background Layer for Cinematic Feel -->
+        <div class="hero-bg-image" style="background-image: url('img/kmlimage.jpg');"></div>
         <div class="hero-bg-overlay"></div>
 
         <div class="container hero-grid" style="position: relative; z-index: 2;">
             <div class="hero-text">
-                <span class="badge">Blok E & Blok F Official</span>
-                <h2 class="hero-title">Everything you need, <br><span>Right in the Dorm.</span></h2>
-                <p class="hero-subtitle">Stay updated with dorm news, find printing services, or trade gear with your neighbors in Blok E and F.</p>
+                <span class="badge">Official Campus Network</span>
+                <h2 class="hero-title">Everything you need, <br><span>Right on Campus.</span></h2>
+                <p class="hero-subtitle">Stay updated with campus news, check laundry availability, find food deals, or trade gear across all blocks.</p>
                 
                 <div class="hero-btns">
-                    <button class="btn btn-dark" onclick="document.getElementById('news').scrollIntoView()">View News</button>
+                    <button class="btn btn-dark" onclick="document.getElementById('news').scrollIntoView()">Explore News</button>
                     <button class="btn btn-primary" onclick="window.location.href='marketplace.html'">Go to Market</button>
                 </div>
             </div>
 
             <div class="hero-stats">
                 <div class="stat-card">
-                    <h3>3</h3>
-                    <p>Services Active</p>
+                    <h3>12+</h3>
+                    <p>Services Live</p>
                 </div>
                 <div class="stat-card">
-                    <h3>45</h3>
-                    <p>New Items</p>
+                    <h3>150</h3>
+                    <p>Listings Active</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 4. MAIN HUB LAYOUT -->
+    <!-- 4. MAIN CAMPUS LAYOUT -->
     <main class="container main-layout" id="news">
         
-        <!-- SIDEBAR: News & Alerts -->
+        <!-- SIDEBAR: Campus Bulletin (Updated to show variety of Blocks) -->
         <aside class="sidebar">
             <div class="filter-group">
                 <div class="section-header-mini">
-                    <h4>Dorm Bulletin</h4>
+                    <h4>Campus Bulletin</h4>
                     <i data-lucide="megaphone" class="header-icon"></i>
                 </div>
         
                 <div class="news-feed">
-                    <!-- NEW: Trending Food News Link -->
-                    <div class="news-item blok-e-notice" onclick="window.location.href='news.html'" style="cursor: pointer; border-left: 4px solid #f59e0b;">
+                    <!-- Global/Trending Link -->
+                    <div class="news-item blok-e-notice" onclick="window.location.href='news.html'" style="cursor: pointer; border-left-color: #f59e0b;">
                         <div class="news-meta">
-                            <span class="news-tag" style="background: #fff7ed; color: #f97316;">Trending</span>
+                            <span class="news-tag" style="background: #fff7ed; color: #f97316;">Trending Food</span>
                             <span class="news-time">HOT</span>
                         </div>
-                        <h4>Cafe Baru Dekat Blok E!</h4>
-                        <p>Cek cafe aesthetic yang baru buka minggu ini. Ada diskon khusus penghuni...</p>
+                        <h4>New Cafe at Block E!</h4>
+                        <p>Kopi Terminal is now open. Exclusive student discounts inside...</p>
                     </div>
 
+                    <!-- Campus Wide News -->
                     <div class="news-item blok-e-notice">
                         <div class="news-meta">
-                            <span class="news-tag blok-e">Blok E</span>
+                            <span class="news-tag blok-e">General</span>
                             <span class="news-time">2h ago</span>
                         </div>
-                        <h4>Water supply disruption</h4>
-                        <p>Maintenance tonight 10PM - 12AM. Fill up your buckets!</p>
+                        <h4>Campus Wi-Fi Maintenance</h4>
+                        <p>Brief disruption expected between 2AM to 4AM tonight.</p>
                     </div>
 
+                    <!-- Specific Block News -->
                     <div class="news-item blok-f-notice">
                         <div class="news-meta">
                             <span class="news-tag blok-f">Blok F</span>
                             <span class="news-time">5h ago</span>
                         </div>
-                        <h4>Futsal Registration</h4>
-                        <p>Registration for Inter-Blok match is now open at F-Lobby.</p>
+                        <h4>Laundry Room Update</h4>
+                        <p>Dryer #3 is now repaired and ready for use.</p>
                     </div>
                 </div>
             </div>
 
             <div class="safety-card premium-safety">
                 <div class="shield-glow"><i data-lucide="shield-check"></i></div>
-                <h4>Verify Room Status</h4>
-                <p>Ensure a safe trade by verifying your room number first.</p>
-                <a href="#" class="safety-link">Get Verified <i data-lucide="arrow-right"></i></a>
+                <h4>Verified Creator</h4>
+                <p>Want to sell or offer services? Apply in your profile.</p>
+                <a href="profile.html" class="safety-link">Visit Profile <i data-lucide="arrow-right"></i></a>
             </div>
         </aside>
 
-        <!-- CONTENT AREA: Services & Market Preview -->
+        <!-- CONTENT AREA: Live Services & Market Preview -->
         <section class="content-area">
             
             <div class="section-header">
                 <div class="header-main">
-                    <h3>Live Services</h3>
-                    <p>Active talent in Blok E & F</p>
+                    <h3>Campus Services</h3>
+                    <p>Student-run services active right now</p>
                 </div>
                 <a href="services.html" class="view-all">View All <i data-lucide="arrow-right"></i></a>
             </div>
 
+            <!-- 1. The Scroll Container -->
             <div class="services-scroll-container" id="servicesScroll">
+                <!-- Card 1 -->
                 <div class="service-mini-card">
                     <div class="card-top">
                         <div class="s-icon"><i data-lucide="printer"></i></div>
@@ -158,10 +166,11 @@
                         <p>RM 0.10/page • Room E302</p>
                     </div>
                     <div class="card-footer">
-                        <button class="contact-btn-whatsapp"><i data-lucide="message-circle"></i> Message</button>
+                        <button class="contact-btn-whatsapp"><i data-lucide="message-circle"></i> WhatsApp</button>
                     </div>
                 </div>
 
+                <!-- Card 2 -->
                 <div class="service-mini-card">
                     <div class="card-top">
                         <div class="s-icon"><i data-lucide="wrench"></i></div>
@@ -176,39 +185,42 @@
                     </div>
                 </div>
 
+                <!-- Card 3 -->
                 <div class="service-mini-card">
                     <div class="card-top">
                         <div class="s-icon"><i data-lucide="scissors"></i></div>
                         <span class="status-badge online">Active</span>
                     </div>
                     <div class="card-body">
-                        <h4>Dorm Barber</h4>
-                        <p>Haircut RM 10 • Room E105</p>
+                        <h4>Barber-On-Demand</h4>
+                        <p>Fades from RM 10 • Blok F</p>
                     </div>
                     <div class="card-footer">
-                        <button class="contact-btn-whatsapp"><i data-lucide="message-circle"></i> Message</button>
+                        <button class="contact-btn-whatsapp"><i data-lucide="message-circle"></i> WhatsApp</button>
                     </div>
                 </div>
             </div>
 
+            <!-- Custom Scroll Slider Handle -->
             <div class="custom-scroll-track">
                 <div class="custom-scroll-thumb" id="scrollThumb"></div>
             </div>
 
-            <!-- MARKETPLACE SECTION -->
+            <!-- MARKETPLACE PREVIEW SECTION -->
             <div class="section-header" style="margin-top: 40px;">
                 <div class="header-main">
-                    <h3>New in Marketplace</h3>
-                    <p>Authentic student listings</p>
+                    <h3>Recent Listings</h3>
+                    <p>Buy and sell across the college</p>
                 </div>
-                <a href="marketplace.html" class="view-all">Shop All <i data-lucide="arrow-right"></i></a>
+                <a href="marketplace.html" class="view-all">Browse All <i data-lucide="arrow-right"></i></a>
             </div>
 
             <div class="bento-grid">
+                <!-- Featured Item -->
                 <div class="bento-card featured-product">
                     <div class="product-img-container">
                         <div class="img-placeholder skeleton"></div>
-                        <span class="product-tag urgent">Urgent</span>
+                        <span class="product-tag urgent">URGENT</span>
                     </div>
                     <div class="product-info-box">
                         <div class="p-header">
@@ -216,7 +228,7 @@
                             <span class="p-price">RM 850</span>
                         </div>
                         <h4>MacBook Air M1 (Silver)</h4>
-                        <p class="p-desc">8GB/256GB. Condition 9/10. Used for 1 year.</p>
+                        <p class="p-desc">Perfect condition. Transitioning to desktop. Price negotiable for students.</p>
                         <div class="p-footer">
                             <span class="p-seller"><i data-lucide="map-pin"></i> Blok E, 204</span>
                             <button class="btn-quick-view"><i data-lucide="eye"></i></button>
@@ -224,17 +236,18 @@
                     </div>
                 </div>
 
+                <!-- Standard Item -->
                 <div class="bento-card">
                     <div class="product-img-container">
                         <div class="img-placeholder skeleton"></div>
-                        <span class="product-tag nego">Nego</span>
+                        <span class="product-tag nego">NEGO</span>
                     </div>
                     <div class="product-info-box">
                         <div class="p-header">
-                            <span class="p-cat">Books</span>
+                            <span class="p-cat">Academic</span>
                             <span class="p-price">RM 45</span>
                         </div>
-                        <h4>Calculus: Early Transcendentals</h4>
+                        <h4>Calculus Textbook</h4>
                         <div class="p-footer">
                             <span class="p-seller"><i data-lucide="map-pin"></i> Blok F, 102</span>
                             <button class="btn-quick-view"><i data-lucide="plus"></i></button>
@@ -246,36 +259,80 @@
     </main>
 
     <!-- 5. FOOTER -->
-    <footer class="monolith-footer">
-        <div class="container footer-grid">
-            <div class="footer-col">
-                <h2 style="color: white; margin-bottom: 10px;">E & F Hub</h2>
-                <p style="opacity: 0.7;">The exclusive portal for students of Blok E and Blok F. Trade, share, and connect.</p>
+<!-- ==========================================================================
+   KMLIFE MASTER FOOTER (HCI: Consistency)
+   ========================================================================== -->
+<footer class="monolith-footer">
+    <div class="container footer-grid">
+        
+        <!-- Column 1: Brand & Identity -->
+        <div class="footer-col">
+            <div class="brand">
+                <div class="bento-logo">
+                    <!-- Footer-specific white squares -->
+                    <span class="sq" style="background: white;"></span>
+                    <span class="sq" style="background: white;"></span>
+                    <span class="sq" style="background: white;"></span>
+                    <span class="sq" style="background: white;"></span>
+                </div>
+                <h2 style="color: white; margin-left: 10px;">KMLife</h2>
             </div>
-            <div class="footer-col">
-                <h4>Support & Legal</h4>
-                <a href="#">Contact Support</a>
-                <a href="#">Campus Safety</a>
-                <a href="#">Terms of Service</a>
-            </div>
-            <div class="footer-col">
-                <h4>Emergency Contacts</h4>
-                <p>Security Office: +6012-3456789</p>
-                <p>Dorm Manager: +6012-9876543</p>
+            <p style="opacity: 0.7; margin-top: 15px; font-size: 0.9rem; line-height: 1.5;">
+                The definitive campus companion. Built by students, for students to enhance college life through community and trade.
+            </p>
+        </div>
+
+        <!-- Column 2: Explore -->
+        <div class="footer-col">
+            <h4>Platform</h4>
+            <a href="index.html">Home Hub</a>
+            <a href="marketplace.html">Marketplace</a>
+            <a href="services.html">Service Hub</a>
+            <a href="laundry.html">Laundry Status</a>
+            <a href="cafe.html">Cafe Directory</a>
+        </div>
+
+        <!-- Column 3: Trust & Support -->
+        <div class="footer-col">
+            <h4>Trust & Safety</h4>
+            <a href="#">Campus Safety Guidelines</a>
+            <a href="#">Report a Listing</a>
+            <a href="#">Verification FAQ</a>
+            <a href="#">Terms of Service</a>
+        </div>
+
+        <!-- Column 4: Emergency Contacts -->
+        <div class="footer-col">
+            <h4>Emergency</h4>
+            <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 8px;">
+                <i data-lucide="phone" style="width:14px; vertical-align:middle; margin-right:5px;"></i> 
+                Security: +6012-3456789
+            </p>
+            <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 8px;">
+                <i data-lucide="phone" style="width:14px; vertical-align:middle; margin-right:5px;"></i> 
+                Dorm Office: +6012-9876543
+            </p>
+            <div class="social-icons" style="margin-top: 20px; display: flex; gap: 15px;">
+                <a href="#"><i data-lucide="instagram"></i></a>
+                <a href="#"><i data-lucide="twitter"></i></a>
             </div>
         </div>
-        <div class="footer-bottom">
-            <div class="container">
-                <p>&copy; 2026 E & F Hub. Built for boys, by boys.</p>
-            </div>
+
+    </div>
+
+    <!-- Copyright Row -->
+    <div class="footer-bottom">
+        <div class="container">
+            <p>&copy; 2026 KMLife Portal. Developed with HCI Principles.</p>
         </div>
-    </footer>
+    </div>
+</footer>
 
     <!-- JAVASCRIPT -->
     <script>
         lucide.createIcons();
 
-        // --- 1. SLIDER DRAG & SCROLL LOGIC ---
+        // 1. SLIDER LOGIC
         const slider = document.getElementById('servicesScroll');
         const thumb = document.getElementById('scrollThumb');
         let isDown = false;
@@ -284,12 +341,12 @@
 
         slider.addEventListener('mousedown', (e) => {
             isDown = true;
-            slider.classList.add('active');
+            slider.style.cursor = 'grabbing';
             startX = e.pageX - slider.offsetLeft;
             scrollLeft = slider.scrollLeft;
         });
-        slider.addEventListener('mouseleave', () => { isDown = false; });
-        slider.addEventListener('mouseup', () => { isDown = false; });
+        slider.addEventListener('mouseleave', () => { isDown = false; slider.style.cursor = 'grab'; });
+        slider.addEventListener('mouseup', () => { isDown = false; slider.style.cursor = 'grab'; });
         slider.addEventListener('mousemove', (e) => {
             if (!isDown) return; 
             e.preventDefault();
@@ -305,7 +362,7 @@
             thumb.style.transform = `translateX(${moveX}px)`;
         });
 
-        // --- 2. BREADCRUMB HOVER LOGIC ---
+        // 2. BREADCRUMB HOVER LOGIC
         const homeTrigger = document.getElementById('homeTrigger');
         const breadcrumbBar = document.getElementById('breadcrumbBar');
         let hideTimeout;
@@ -314,7 +371,6 @@
             clearTimeout(hideTimeout);
             breadcrumbBar.classList.add('is-active');
         });
-
         homeTrigger.addEventListener('mouseleave', () => {
             hideTimeout = setTimeout(() => {
                 if (!breadcrumbBar.matches(':hover')) {
@@ -322,7 +378,6 @@
                 }
             }, 200);
         });
-
         breadcrumbBar.addEventListener('mouseenter', () => clearTimeout(hideTimeout));
         breadcrumbBar.addEventListener('mouseleave', () => breadcrumbBar.classList.remove('is-active'));
     </script>
