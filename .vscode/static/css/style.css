@@ -1976,10 +1976,7 @@ input:focus, textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 4p
     .avatar-massive-wrapper { position: absolute; top: -70px; left: 50%; transform: translateX(-50%); }
     .user-cta-group { margin: 0; width: 100%; }
     .toolkit-grid { grid-template-columns: repeat(2, 1fr); }
-=======
-   AUTH PAGE SPECIFICS
-   ========================================================================== */
-
+}
 .auth-bg {
     background: radial-gradient(circle at top right, #eef2ff, var(--bg));
     min-height: 100vh;
@@ -2080,12 +2077,7 @@ input:focus, textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 4p
         border: none;
         box-shadow: none;
         background: transparent;
-    }
->>>>>>> 9a3b9e3b15e9ff5da4241544c39f7b77ca4253fb
-}
-/* ==========================================================================
-   STUNNING AUTH INTERFACE (Login/Signup)
-   ========================================================================== */
+        }
 
 }
 .auth-page {
