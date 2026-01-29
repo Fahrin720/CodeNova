@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Hub Press | KMLife News</title>
-    <link rel="stylesheet" href="css/style.css">
+    
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -15,7 +15,7 @@
     <!-- GLOBAL NAVIGATION -->
 <header class="glass-nav sticky">
     <div class="container nav-wrapper">
-        <div class="brand" onclick="window.location.href='index.html'">
+        <div class="brand" onclick="window.location.href='/'">
             <div class="bento-logo">
                 <span class="sq"></span><span class="sq"></span>
                 <span class="sq"></span><span class="sq"></span>
@@ -27,12 +27,12 @@
         </div>
         
         <nav class="nav-links">
-            <a href="index.html" class="nav-item">Home</a>
-            <a href="marketplace.html" class="nav-item">Marketplace</a>
-            <a href="services.html" class="nav-item">Services</a>
-            <a href="laundry.html" class="nav-item">Laundry</a>
-            <a href="cafe.html" class="nav-item">Cafe</a>
-            <a href="news.html" class="nav-item active" id="homeTrigger">News</a>
+            <a href="/" class="nav-item">Home</a>
+            <a href="/marketplace" class="nav-item">Marketplace</a>
+            <a href="/services" class="nav-item">Services</a>
+            <a href="/laundry" class="nav-item">Laundry</a>
+            <a href="/cafe" class="nav-item">Cafe</a>
+            <a href="/news" class="nav-item active" id="homeTrigger">News</a>
         </nav>
 
         <div class="nav-actions">
@@ -40,8 +40,8 @@
                 <i data-lucide="search"></i>
                 <input type="text" placeholder="Search KMLife...">
             </div>
-            
-            <div class="profile-trigger" onclick="window.location.href='profile.html'">
+
+            <div class="profile-trigger" onclick="window.location.href='/profile'">
                 <img src="https://ui-avatars.com/api/?name=User&background=4f46e5&color=fff" alt="Profile" class="avatar-sm">
             </div>
         </div>
@@ -176,11 +176,11 @@
         <!-- Column 2: Explore -->
         <div class="footer-col">
             <h4>Platform</h4>
-            <a href="index.html">Home Hub</a>
-            <a href="marketplace.html">Marketplace</a>
-            <a href="services.html">Service Hub</a>
-            <a href="laundry.html">Laundry Status</a>
-            <a href="cafe.html">Cafe Directory</a>
+            <a href="/">Home Hub</a>
+            <a href="/marketplace">Marketplace</a>
+            <a href="/services">Service Hub</a>
+            <a href="/laundry">Laundry Status</a>
+            <a href="/cafe">Cafe Directory</a>
         </div>
 
         <!-- Column 3: Trust & Support -->

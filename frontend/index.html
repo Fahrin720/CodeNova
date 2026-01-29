@@ -3,13 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
     <title>KMLife | Official College Community Portal</title>
-=======
-    <title>Student Cafe</title>
->>>>>>> 9a3b9e3b15e9ff5da4241544c39f7b77ca4253fb
     <!-- Linking the Master CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <!-- Typography -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -19,50 +15,45 @@
 <body>
 
     <!-- 1. GLOBAL NAVIGATION (Updated for KMLife) -->
-    <header class="glass-nav sticky">
-        <div class="container nav-wrapper">
-            <div class="brand" onclick="window.location.href='index.html'">
-                <div class="bento-logo">
-                    <span class="sq"></span><span class="sq"></span>
-                    <span class="sq"></span><span class="sq"></span>
-                </div>
-                <div class="brand-text">
-<<<<<<< HEAD
-                    <h1>KMLife</h1>
-                    <span class="tagline">Official College Community Portal</span>
-=======
-                    <h1>Student</h1>
-                    <span class="tagline">Hub</span>
->>>>>>> 9a3b9e3b15e9ff5da4241544c39f7b77ca4253fb
-                </div>
+<!-- GLOBAL NAVIGATION -->
+<header class="glass-nav sticky">
+    <div class="container nav-wrapper">
+        <div class="brand" onclick="window.location.href='/'">
+            <div class="bento-logo">
+                <span class="sq"></span><span class="sq"></span>
+                <span class="sq"></span><span class="sq"></span>
             </div>
-            
-            <nav class="nav-links">
-                <a href="index.html" class="nav-item active" id="homeTrigger">Home</a>
-                <a href="marketplace.html" class="nav-item">Marketplace</a>
-                <a href="services.html" class="nav-item">Services</a>
-                <a href="laundry.html" class="nav-item">Laundry</a>
-                <a href="cafe.html" class="nav-item">Cafe</a>
-                <a href="news.html" class="nav-item">News</a>
-            </nav>
-
-            <div class="nav-actions">
-                <div class="search-input">
-                    <i data-lucide="search"></i>
-                    <input type="text" placeholder="Search campus...">
-                </div>
-                
-                <div class="profile-trigger" onclick="window.location.href='profile.html'">
-                    <img src="https://ui-avatars.com/api/?name=User&background=4f46e5&color=fff" alt="Profile" class="avatar-sm">
-                </div>
+            <div class="brand-text">
+                <h1>KMLife</h1>
+                <span class="tagline">Official College Portal</span>
             </div>
         </div>
-    </header>
+        
+        <nav class="nav-links">
+            <a href="/" class="nav-item active" id="homeTrigger">Home</a>
+            <a href="/marketplace" class="nav-item">Marketplace</a>
+            <a href="/services" class="nav-item">Services</a>
+            <a href="/laundry" class="nav-item">Laundry</a>
+            <a href="/cafe" class="nav-item">Cafe</a>
+            <a href="/news" class="nav-item">News</a>
+        </nav>
 
+        <div class="nav-actions">
+            <div class="search-input">
+                <i data-lucide="search"></i>
+                <input type="text" placeholder="Search KMLife...">
+            </div>
+
+            <div class="profile-trigger" onclick="window.location.href='/profile'">
+                <img src="https://ui-avatars.com/api/?name=User&background=4f46e5&color=fff" alt="Profile" class="avatar-sm">
+            </div>
+        </div>
+    </div>
+</header>
     <!-- 2. ON-DEMAND BREADCRUMB BOX (Precision Hover) -->
     <section class="breadcrumb-bar" id="breadcrumbBar">
         <nav class="breadcrumbs">
-            <a href="index.html"><i data-lucide="home"></i> Home</a>
+            <a href="/"><i data-lucide="home"></i> Home</a>
             <span class="sep"><i data-lucide="chevron-right"></i></span>
             <span class="current">Campus Hub</span>
         </nav>
@@ -71,20 +62,15 @@
     <!-- 3. HERO HUB (Rebranded & Blurred Background) -->
     <section class="hero-hub">
         <!-- Background Layer for Cinematic Feel -->
-        <div class="hero-bg-image" style="background-image: url('img/kmlimage.jpg');"></div>
+         
+        <div class="hero-bg-image" style="background-image: url('/static/img/kmlimage.jpg');"></div>
         <div class="hero-bg-overlay"></div>
 
         <div class="container hero-grid" style="position: relative; z-index: 2;">
             <div class="hero-text">
-<<<<<<< HEAD
                 <span class="badge">Official Campus Network</span>
                 <h2 class="hero-title">Everything you need, <br><span>Right on Campus.</span></h2>
                 <p class="hero-subtitle">Stay updated with campus news, check laundry availability, find food deals, or trade gear across all blocks.</p>
-=======
-                <span class="badge">Student Space Official Hub</span>
-                <h2 class="hero-title">Everything you need, <br><span>Right in the Dorm.</span></h2>
-                <p class="hero-subtitle">Stay updated with dorm news, find printing services, or trade gear with your neighbors in Blok E and F.</p>
->>>>>>> 9a3b9e3b15e9ff5da4241544c39f7b77ca4253fb
                 
                 <div class="hero-btns">
                     <button class="btn btn-dark" onclick="document.getElementById('news').scrollIntoView()">Explore News</button>
@@ -94,13 +80,8 @@
 
             <div class="hero-stats">
                 <div class="stat-card">
-<<<<<<< HEAD
                     <h3>12+</h3>
                     <p>Services Live</p>
-=======
-                    <h3>56</h3>
-                    <p>Services Active</p>
->>>>>>> 9a3b9e3b15e9ff5da4241544c39f7b77ca4253fb
                 </div>
                 <div class="stat-card">
                     <h3>150</h3>
@@ -118,7 +99,9 @@
             <div class="filter-group">
                 <div class="section-header-mini">
                     <h4>Campus Bulletin</h4>
-                    <i data-lucide="megaphone" class="header-icon"></i>
+                    {% if user.role == 'admin' %}
+                        <button class="btn-sm">+ New Post</button> <!-- Only Admin sees this -->
+                    {% endif %}
                 </div>
         
                 <div class="news-feed">
@@ -158,7 +141,7 @@
                 <div class="shield-glow"><i data-lucide="shield-check"></i></div>
                 <h4>Verified Creator</h4>
                 <p>Want to sell or offer services? Apply in your profile.</p>
-                <a href="profile.html" class="safety-link">Visit Profile <i data-lucide="arrow-right"></i></a>
+                <a href="/profile" class="safety-link">Visit Profile <i data-lucide="arrow-right"></i></a>
             </div>
         </aside>
 
@@ -305,11 +288,11 @@
         <!-- Column 2: Explore -->
         <div class="footer-col">
             <h4>Platform</h4>
-            <a href="index.html">Home Hub</a>
-            <a href="marketplace.html">Marketplace</a>
-            <a href="services.html">Service Hub</a>
-            <a href="laundry.html">Laundry Status</a>
-            <a href="cafe.html">Cafe Directory</a>
+            <a href="/">Home Hub</a>
+            <a href="/marketplace">Marketplace</a>
+            <a href="/services">Service Hub</a>
+            <a href="/laundry">Laundry Status</a>
+            <a href="/cafe">Cafe Directory</a>
         </div>
 
         <!-- Column 3: Trust & Support -->

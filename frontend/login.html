@@ -3,88 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | E & F Hub</title>
-    <link rel="stylesheet" href="css/style.css">
-<<<<<<< HEAD
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-=======
+    <title>Login | KMLife</title>
+    <!-- Master CSS Link -->
+    <link rel="stylesheet" href="/static/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
->>>>>>> 9a3b9e3b15e9ff5da4241544c39f7b77ca4253fb
 </head>
-<body class="auth-bg">
+<body class="auth-page-bg">
 
-    <!-- 1. NAVIGATION (Consistent) -->
-    <header class="glass-nav sticky">
-        <div class="container nav-wrapper">
-            <div class="brand" onclick="window.location.href='index.html'">
-                <div class="bento-logo"><span class="sq"></span><span class="sq"></span><span class="sq"></span><span class="sq"></span></div>
-                <div class="brand-text"><h1>E & F Hub</h1><span class="tagline">Boys' Dormitory Portal</span></div>
+    <!-- THE BLURRED BACKGROUND (Separate from content) -->
+    <div class="auth-visual-bg" style="background-image: url('/static/img/kmlimage.jpg');"></div>
+
+    <!-- THE CENTERING WRAPPER -->
+    <div class="auth-flex-wrapper">
+        
+        <div class="auth-card-box glass">
+            <!-- Brand Area -->
+            <div class="auth-brand-area">
+                <div class="bento-logo">
+                    <span class="sq"></span><span class="sq"></span>
+                    <span class="sq"></span><span class="sq"></span>
+                </div>
+                <h1>KMLife</h1>
             </div>
-        </div>
-    </header>
 
-    <!-- 2. LOGIN CARD -->
-    <main class="container">
-        <div class="auth-card">
-            <div class="auth-header">
+            <div class="auth-intro">
                 <h2>Welcome Back</h2>
-                <p>Sign in to access your dorm dashboard</p>
+                <p>Login to access your campus dashboard</p>
             </div>
 
-            <form id="loginForm">
-                <div class="input-group">
-                    <label>Student ID / Email</label>
-                    <div class="input-wrapper">
+            <!-- BACKEND ACTION: Points to handle_login in app.py -->
+            <form action="/api/auth/login" method="POST" class="auth-tidy-form">
+                
+                <div class="form-group">
+                    <label>Student ID</label>
+                    <div class="input-with-icon">
                         <i data-lucide="user"></i>
-                        <input type="text" placeholder="e.g. 2024123456" required>
+                        <input type="text" name="student_id" placeholder="e.g. 2024111" required>
                     </div>
                 </div>
 
-                <div class="input-group">
+                <div class="form-group">
                     <label>Password</label>
-                    <div class="input-wrapper">
+                    <div class="input-with-icon">
                         <i data-lucide="lock"></i>
-                        <input type="password" id="loginPass" placeholder="••••••••" required>
-                        <button type="button" class="toggle-pass" onclick="togglePass('loginPass')">
-                            <i data-lucide="eye" id="loginPassIcon"></i>
+                        <input type="password" name="password" id="loginPass" placeholder="••••••••" required>
+                        <!-- Password Visibility Toggle -->
+                        <button type="button" class="toggle-pass-btn" onclick="togglePass()">
+                            <i data-lucide="eye" id="eyeIcon" style="width: 16px;"></i>
                         </button>
                     </div>
                 </div>
 
-                <div class="auth-options">
-                    <label class="check-item-modern">
-                        <input type="checkbox"> <span class="custom-check"></span> <span>Remember me</span>
+                <!-- Tidy Row for Remember/Forgot -->
+                <div class="auth-meta-row">
+                    <label class="remember-me">
+                        <input type="checkbox"> <span>Remember me</span>
                     </label>
-                    <a href="#" class="forgot-link">Forgot Password?</a>
+                    <a href="#" class="forgot-text">Forgot?</a>
                 </div>
 
-                <button type="submit" class="btn btn-primary w-100">Sign In</button>
+                <button type="submit" class="btn btn-primary w-100 mt-10">
+                    Sign In <i data-lucide="log-in"></i>
+                </button>
             </form>
 
-            <div class="auth-footer">
-                <p>Don't have an account? <a href="signup.html">Create an account</a></p>
-            </div>
+            <p class="auth-switch">New to KMLife? <a href="/signup">Create Account</a></p>
         </div>
-    </main>
 
-    <!-- 3. FOOTER (Consistent) -->
-    <footer class="monolith-footer">
-        <div class="container">
-            <p>&copy; 2026 E & F Hub. Secure student authentication.</p>
-        </div>
-    </footer>
+    </div>
 
     <script>
         lucide.createIcons();
-        function togglePass(id) {
-            const input = document.getElementById(id);
-            const icon = document.getElementById(id + 'Icon');
-            if (input.type === "password") {
-                input.type = "text";
+
+        function togglePass() {
+            const input = document.getElementById('loginPass');
+            const icon = document.getElementById('eyeIcon');
+            if (input.type === 'password') {
+                input.type = 'text';
                 icon.setAttribute('data-lucide', 'eye-off');
             } else {
-                input.type = "password";
+                input.type = 'password';
                 icon.setAttribute('data-lucide', 'eye');
             }
             lucide.createIcons();

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Dashboard | KMLife</title>
-    <link rel="stylesheet" href="css/style.css">
+    
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -14,7 +14,7 @@
 <!-- GLOBAL NAVIGATION -->
 <header class="glass-nav sticky">
     <div class="container nav-wrapper">
-        <div class="brand" onclick="window.location.href='index.html'">
+        <div class="brand" onclick="window.location.href='/'">
             <div class="bento-logo">
                 <span class="sq"></span><span class="sq"></span>
                 <span class="sq"></span><span class="sq"></span>
@@ -26,12 +26,12 @@
         </div>
         
         <nav class="nav-links">
-            <a href="index.html" class="nav-item">Home</a>
-            <a href="marketplace.html" class="nav-item">Marketplace</a>
-            <a href="services.html" class="nav-item">Services</a>
-            <a href="laundry.html" class="nav-item">Laundry</a>
-            <a href="cafe.html" class="nav-item">Cafe</a>
-            <a href="news.html" class="nav-item">News</a>
+            <a href="/" class="nav-item">Home</a>
+            <a href="/marketplace" class="nav-item">Marketplace</a>
+            <a href="/services" class="nav-item">Services</a>
+            <a href="/laundry" class="nav-item">Laundry</a>
+            <a href="/cafe" class="nav-item">Cafe</a>
+            <a href="/news" class="nav-item">News</a>
         </nav>
 
         <div class="nav-actions">
@@ -39,8 +39,8 @@
                 <i data-lucide="search"></i>
                 <input type="text" placeholder="Search KMLife...">
             </div>
-            
-            <div class="profile-trigger" onclick="window.location.href='profile.html'">
+
+            <div class="profile-trigger" onclick="window.location.href='/profile'">
                 <img src="https://ui-avatars.com/api/?name=User&background=4f46e5&color=fff" alt="Profile" class="avatar-sm">
             </div>
         </div>
@@ -50,7 +50,7 @@
     <!-- 2. BREADCRUMBS -->
     <section class="breadcrumb-bar" id="breadcrumbBar">
         <nav class="breadcrumbs">
-            <a href="index.html"><i data-lucide="home"></i> Home</a>
+            <a href="/"><i data-lucide="home"></i> Home</a>
             <span class="sep"><i data-lucide="chevron-right"></i></span>
             <span class="current">My Dashboard</span>
         </nav>
@@ -66,8 +66,9 @@
                     <div class="edit-avatar-btn"><i data-lucide="camera"></i></div>
                 </div>
                 <div class="user-info-text">
-                    <h1>Ariff Syahmi <span class="verified-icon"><i data-lucide="check-circle"></i></span></h1>
-                    <p>Blok E, Room 302 • <span class="km-id-text">ID: 2024123456</span></p>
+<!-- Python will replace {{ user.name }} with the logged-in name -->
+                    <h1 class="user-name">{{ user.name if user else "Guest" }}</h1>
+                    <p>Blok {{ user.blok if user else "" }}, Room {{ user.room if user else "" }}</p>
                     <div class="user-stats-row">
                         <div class="u-stat"><b>150</b> <span>KMCoin</span></div>
                         <div class="u-stat"><b>98%</b> <span>Trust</span></div>
@@ -76,7 +77,22 @@
                 </div>
                 <div class="user-cta-group">
                     <button class="btn btn-primary" onclick="window.location.href='add-product.html'"><i data-lucide="plus"></i> Post Listing</button>
-                    <button class="btn btn-outline-dark"><i data-lucide="settings"></i> Account</button>
+                    <!-- ACCOUNT DROPDOWN -->
+    <div class="account-dropdown-container">
+        <button class="btn btn-outline-dark" id="accountDropdownBtn">
+            <i data-lucide="settings"></i> Account <i data-lucide="chevron-down" style="width: 14px; margin-left: 5px;"></i>
+        </button>
+        
+        <div class="account-menu glass" id="accountMenu">
+            <a href="#"><i data-lucide="user-cog"></i> Edit Profile</a>
+            <a href="#"><i data-lucide="shield-lock"></i> Security</a>
+            <a href="#"><i data-lucide="wallet"></i> Coin History</a>
+            <div class="menu-divider"></div>
+            <!-- Points to the Flask Logout Route -->
+            <a href="/logout" class="logout-item"><i data-lucide="log-out"></i> Sign Out</a>
+        </div>
+    </div>
+</div>
                 </div>
             </div>
         </div>
@@ -183,11 +199,11 @@
         <!-- Column 2: Explore -->
         <div class="footer-col">
             <h4>Platform</h4>
-            <a href="index.html">Home Hub</a>
-            <a href="marketplace.html">Marketplace</a>
-            <a href="services.html">Service Hub</a>
-            <a href="laundry.html">Laundry Status</a>
-            <a href="cafe.html">Cafe Directory</a>
+            <a href="/">Home Hub</a>
+            <a href="/marketplace">Marketplace</a>
+            <a href="/services">Service Hub</a>
+            <a href="/laundry">Laundry Status</a>
+            <a href="/cafe">Cafe Directory</a>
         </div>
 
         <!-- Column 3: Trust & Support -->
@@ -225,7 +241,7 @@
         </div>
     </div>
 </footer>
-
+    
     <script>
         lucide.createIcons();
         // Breadcrumb Hover JS
@@ -239,6 +255,21 @@
         });
         breadcrumbBar.addEventListener('mouseenter', () => clearTimeout(hideTimeout));
         breadcrumbBar.addEventListener('mouseleave', () => breadcrumbBar.classList.remove('is-active'));
+        // Toggle Account Dropdown
+const dropdownBtn = document.getElementById('accountDropdownBtn');
+const accountMenu = document.getElementById('accountMenu');
+
+dropdownBtn.addEventListener('click', (e) => {
+    e.stopPropagation(); // Prevents immediate closing
+    accountMenu.classList.toggle('show');
+});
+
+// Close menu if user clicks anywhere else
+document.addEventListener('click', (e) => {
+    if (!dropdownBtn.contains(e.target) && !accountMenu.contains(e.target)) {
+        accountMenu.classList.remove('show');
+    }
+});
     </script>
 </body>
 </html>
