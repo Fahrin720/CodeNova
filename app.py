@@ -82,6 +82,19 @@ def laundry_page():
     data = get_laundry_data()
     return render_template('laundry.html', machines=data)
 
+@app.route('/profile')
+@app.route('/profile.html') # Accepts both versions
+@login_required
+def profile_view():
+    return render_template('profile.html')
+
+@app.route('/marketplace')
+@app.route('/marketplace.html')
+def marketplace_view():
+    return render_template('marketplace.html')
+
+# Do this for all your pages (laundry, cafe, news, etc.)
+
 # ... (Keep other routes like /profile, /cafe, /news the same)
 
 # ==========================================================================
