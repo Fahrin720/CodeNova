@@ -16,7 +16,7 @@ users = {
         "role": "admin", "room": "E302", "blok": "E", "coins": 150, "vouches": 14
     }
 }
-
+ 
 # 2. THE BOUNCER (Access Control)
 @app.before_request
 def force_login():
