@@ -17,3 +17,9 @@
         }
     ]
 }
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/static/(.*)", "destination": "/static/$1" }
+  ]
+}
